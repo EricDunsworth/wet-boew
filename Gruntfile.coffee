@@ -10,6 +10,7 @@ module.exports = (grunt) ->
 		[
 			"build"
 			"demos"
+			"docs"
 		]
 	)
 
@@ -163,6 +164,14 @@ module.exports = (grunt) ->
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:assets_min"
+		]
+	)
+
+	@registerTask(
+		"docs"
+		"INTERNAL: Create unminified docs"
+		[
+			"pages:docs"
 		]
 	)
 
