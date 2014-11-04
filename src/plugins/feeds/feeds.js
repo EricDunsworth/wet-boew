@@ -259,6 +259,7 @@ var componentName = "wb-feeds",
 			i, len;
 
 		len = items.length;
+		console.log("processEntries: " + items.length);
 		for ( i = 0; i !== len; i += 1 ) {
 			items[ i ].fIcon =  icon ;
 
@@ -275,13 +276,15 @@ var componentName = "wb-feeds",
 			parseEntries( entries, $content.data( "feedLimit" ), $content, this.feedType );
 			return 0;
 		}
+		
+		//console.log(entries); //test
 
 		toProcess -= 1 ;
 		$content.data({
 			"toProcess": toProcess,
 			"entries": entries
 		});
-
+		//alert("processEntries: " + toProcess);
 		return toProcess;
 	},
 
@@ -376,6 +379,36 @@ var componentName = "wb-feeds",
 
 		// Identify that the feed has now been displayed
 		$elm.trigger( "wb-feed-ready" + selector );
+	},
+
+	/**
+	 * Creates a pagination list
+	 * @method createPaginationList
+	 * @param  {data} JSON formatted data to process
+	 * @return {string}	of HTML output
+	 */
+	createPaginationList = function( data ) {
+		var itemCount = data.length,
+			loadLimit = this._content.data( "feedLimit" ),
+			viewLimit = 3,
+			pageCount = Math.ceil( loadLimit / viewLimit ),
+			paginationHtmlString;
+		
+		console.log("Load items: " + itemCount);
+		console.log("View limit: " + loadLimit);
+		console.log("Page count: " + pageCount);
+		
+		//activeLimit = 
+		
+		paginationHtmlString = "<nav><ul class=\"pagination\">\n";
+		for ( var i = 0; i < pageCount; i++ ) {
+			paginationHtmlString += "<li><a href=\"#\">#</a></li>\n";
+		}
+		paginationHtmlString += "</ul></li>";
+		
+		console.log(paginationHtmlString);
+		
+		return;
 	};
 
 $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( event, context ) {
@@ -392,6 +425,9 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 		if ( processEntries.apply( context, [ data ] ) === 0 ) {
 			wb.ready( $( eventTarget ).closest( selector ), componentName );
 		}
+		
+		createPaginationList.apply( context, [ data ] );
+		//window.alert("lol");
 	}
 });
 
