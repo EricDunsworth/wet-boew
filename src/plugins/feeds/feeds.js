@@ -252,6 +252,10 @@ var componentName = "wb-feeds",
 						fType = "generic";
 					}
 				}
+				
+				//Record the feed type for later use
+				$content.data( "feedType", fType )
+				window.alert($content.data( "feedType" ));
 
 				fetch.jsonp = callback;
 
@@ -319,7 +323,7 @@ var componentName = "wb-feeds",
 	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
 	 * @return {url} The URL for the JSON request
 	 */
-	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {
+	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {window.alert(feedType);
 		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
 			displaying = cap - startAt,
 			showPagination = (displaying <= entries.length),
@@ -412,7 +416,7 @@ var componentName = "wb-feeds",
 			}
 
 			paginationMarkup += "><a href=\"#\" rel=\"prev\">" + i18nText.previous + "</a></li><li";
-
+//window.alert("entries: " + $elm.data( "entries" ).length + "\r\nstartAt: " + $elm.data( "startAt" ) + "\r\n displaying: " + $elm.data( "displaying" ));
 			if ( ( $elm.data( "entries" ).length - $elm.data( "startAt" ) - $elm.data( "displaying" ) ) <= 0 ) {
 				paginationMarkup += " class=\"disabled\"";
 			}
@@ -456,7 +460,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 	var $linkCtx = $(event.target),
 		$content = $(event.target).closest(".wb-feeds").find(".feeds-cont"),
 		newStartAt;
-
+//window.alert($content.data( "generic" ));
 	if ( $linkCtx.attr("rel") === "next" ) {
 		newStartAt = $content.data( "startAt" ) + $content.data( "displayLimit" );
 
@@ -464,10 +468,9 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 		if ( newStartAt < $content.data( "entries" ).length ) {
 
 			// Set the new start entry's number
-			$content.data( "startAt", newStartAt);
+			$content.data( "startAt", newStartAt );
 
 			// Update the feed entries that are shown
-			// TODO: Don't force "generic"
 			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
 		}
 	} else {
@@ -480,7 +483,6 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 			$content.data( "startAt", newStartAt );
 
 			// Update the feed entries that are shown
-			// TODO: Don't force "generic"
 			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
 		}
 	}
