@@ -6,7 +6,7 @@
  */
 ( function( $, window, wb ) {
 "use strict";
-
+return
 /*
  * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
