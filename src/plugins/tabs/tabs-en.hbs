@@ -7,7 +7,7 @@
 	"tag": "tabs",
 	"parentdir": "tabs",
 	"altLangPrefix": "tabs",
-	"dateModified": "2015-02-24"
+	"dateModified": "2016-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -88,7 +88,7 @@
 	</div>
 
 	<p class="mrgn-tp-md"><a href="#details-panel3" class="wb-tabs-ext">Show the third panel</a></p>
-	
+
 	<details class="mrgn-bttm-md">
 		<summary>View code</summary>
 		<pre><code>&lt;div class=&quot;wb-tabs&quot;&gt;
@@ -111,9 +111,11 @@
 	&lt;p class="mrgn-tp-md"&gt;&lt;a href="#details-panel3" class="wb-tabs-ext"&gt;Show the third panel&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 	</details>
-	
+</section>
+
+<section>
 	<h2>Example 2</h2>
-	<p>With ignore-session class.  This will prevent the last selected tab from being remembered at a subsequent page load. (With class or <code>data-wb-tabs</code> attribute.)</p> 
+	<p>With ignore-session class.  This will prevent the last selected tab from being remembered at a subsequent page load. (With class or <code>data-wb-tabs</code> attribute.)</p>
 	<div class="wb-tabs ignore-session">
 		<div class="tabpanels">
 			<details id="details-panel10">
@@ -197,6 +199,48 @@
 			&lt;/p&gt;
 		&lt;/details&gt;
 		...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+	</details>
+</section>
+
+<section>
+	<h2>Example 3 (one tab)</h2>
+	<p>Bla bla bla...</p>
+	<div class="wb-tabs">
+		<div class="tabpanels">
+			<details id="details-panel100">
+				<summary>Example 1</summary>
+				<p>
+				From time immemorial the Norsemen were among the most daring and
+				skilful mariners ever known. They built great wooden boats with tall,
+				sweeping bows and sterns. These ships, though open and without decks,
+				were yet stout and seaworthy. Their remains have been found, at times
+				lying deeply buried under the sand and preserved almost intact. One
+				such vessel, discovered on the shore of Denmark, measured 72 feet in
+				length. Another Viking ship, which was dug up in Norway, and which is
+				preserved in the museum at Christiania, was 78 feet long and 17 feet
+				wide. One of the old Norse sagas, or stories, tells how King Olaf
+				Tryggvesson built a ship, the keel of which, as it lay on the grass,
+				was 74 ells long; in modern measure, it would be a vessel of about 942
+				tons burden. Even if we make allowance for the exaggeration or
+				ignorance of the writer of the saga, there is still a vast contrast
+				between this vessel and the little ship Centurion in which Anson sailed
+				round the world.
+				</p>
+			</details>
+		</div>
+	</div>
+	<details class="mrgn-bttm-md">
+		<summary>View code</summary>
+		<pre><code>&lt;div class=&quot;wb-tabs&quot;&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;details id=&quot;details-panel100&quot;&gt;
+			&lt;summary&gt;Example 1&lt;/summary&gt;
+			&lt;p&gt;
+				...
+			&lt;/p&gt;
+		&lt;/details&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 	</details>
