@@ -14,12 +14,11 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var componentName = "wb-tabs",
-	namespace = "." + componentName,
-	selector = namespace + ":has( > .tabpanels > [role='tabpanel']:nth-of-type(2), > .tabpanels > details:nth-of-type(2), > [role='tabpanel']:nth-of-type(2), > details:nth-of-type(2))",
-	initEvent = "wb-init" + namespace,
-	shiftEvent = "wb-shift" + namespace,
-	selectEvent = "wb-select" + namespace,
-	updatedEvent = "wb-updated" + namespace,
+	selector = "." + componentName,
+	initEvent = "wb-init" + selector,
+	shiftEvent = "wb-shift" + selector,
+	selectEvent = "wb-select" + selector,
+	updatedEvent = "wb-updated" + selector,
 	setFocusEvent = "setfocus.wb",
 	controls = selector + " ul[role=tablist] a, " + selector + " ul[role=tablist] .tab-count",
 	initialized = false,
@@ -72,6 +71,15 @@ var componentName = "wb-tabs",
 			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );
 			$tablist = $elm.children( "[role=tablist]" );
 			isCarousel = $tablist.length !== 0;
+
+			// Exit early on if a carousel contains only 1 panel
+			if ( isCarousel && $panels.length === 1 ) {
+
+				// Identify that initialization has completed
+				wb.ready( $elm, componentName );
+
+				return;
+			}
 
 			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
 			hashFocus = activeId.length !== 0;
@@ -238,6 +246,9 @@ var componentName = "wb-tabs",
 			drizzleAria( $panels, $tablist );
 
 			if ( isCarousel ) {
+
+				// Add a class to indicate the carousel contains multiple panels (1 panel carousels will never reach this point)
+				$elm.addClass( "multiple-panels" );
 
 				// Returns true if the tabs should be rotating automatically
 				if ( createControls( $tablist, settings ) ) {
@@ -722,7 +733,7 @@ var componentName = "wb-tabs",
 	};
 
  // Bind the init event of the plugin
- $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, namespace, function( event ) {
+ $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventCurrentTarget = event.currentTarget,
 		$elm;
@@ -734,7 +745,7 @@ var componentName = "wb-tabs",
 				$elm = $( eventTarget );
 				if ( !$elm.hasClass( componentName + "-inited" ) ) {
 					init( event );
-				} else if ( $elm.hasClass( "playing" ) ) {
+				} else if ( $elm.hasClass( "playing" ) && $elm.hasClass( "multiple-panels" ) ) {
 					onTimerPoke( $elm );
 				}
 				break;
