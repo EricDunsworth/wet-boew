@@ -72,13 +72,11 @@ var componentName = "wb-tabs",
 			$tablist = $elm.children( "[role=tablist]" );
 			isCarousel = $tablist.length !== 0;
 
-			// Exit early on if a carousel contains only 1 panel
+			// If a carousel contains only 1 panel, remove its controls, visually-hide its thumbnails and prevent it from attempting to play
 			if ( isCarousel && $panels.length === 1 ) {
 
-				// Identify that initialization has completed
-				wb.ready( $elm, componentName );
-
-				return;
+				$elm.removeClass( "show-thumbs playing" );
+				$elm.addClass( "exclude-controls" );
 			}
 
 			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
@@ -95,6 +93,7 @@ var componentName = "wb-tabs",
 					interval: $elm.hasClass( "slow" ) ?
 								9 : $elm.hasClass( "fast" ) ?
 									3 : defaults.interval,
+					excludeControls: $elm.hasClass( "exclude-controls" ),
 					excludePlay: $elm.hasClass( "exclude-play" ),
 					updateHash: $elm.hasClass( "update-hash" ),
 					playing: $elm.hasClass( "playing" ),
@@ -247,9 +246,6 @@ var componentName = "wb-tabs",
 
 			if ( isCarousel ) {
 
-				// Add a class to indicate the carousel contains multiple panels (1 panel carousels will never reach this point)
-				$elm.addClass( "multiple-panels" );
-
 				// Returns true if the tabs should be rotating automatically
 				if ( createControls( $tablist, settings ) ) {
 
@@ -330,8 +326,9 @@ var componentName = "wb-tabs",
 		var prevText = i18nText.prev,
 			nextText = i18nText.next,
 			spaceText = i18nText.space,
+			excludeControls = settings.excludeControls,
 			excludePlay = settings.excludePlay,
-			isPlaying = !excludePlay && settings.playing,
+			isPlaying = !excludeControls && !excludePlay && settings.playing,
 			state = isPlaying ? i18nText.pause : i18nText.play,
 			hidden = isPlaying ? i18nText.rotStop : i18nText.rotStart,
 			glyphiconStart = "<span class='glyphicon glyphicon-",
@@ -364,8 +361,11 @@ var componentName = "wb-tabs",
 				"</span>" + wbInvStart + spaceText + i18nText.hyphen + spaceText +
 				hidden + btnEnd;
 
-		$tablist.prepend( prevControl + tabCount + nextControl );
-		if ( !excludePlay ) {
+		if ( !excludeControls ) {
+			$tablist.prepend( prevControl + tabCount + nextControl );
+		}
+
+		if ( !excludeControls && !excludePlay ) {
 			$tablist.append( playControl );
 		}
 
@@ -745,7 +745,7 @@ var componentName = "wb-tabs",
 				$elm = $( eventTarget );
 				if ( !$elm.hasClass( componentName + "-inited" ) ) {
 					init( event );
-				} else if ( $elm.hasClass( "playing" ) && $elm.hasClass( "multiple-panels" ) ) {
+				} else if ( $elm.hasClass( "playing" ) ) {
 					onTimerPoke( $elm );
 				}
 				break;
