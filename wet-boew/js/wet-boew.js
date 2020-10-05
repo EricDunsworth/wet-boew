@@ -8966,7 +8966,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 					console.log( "test..." );
-					console.log( "YT CAPTIONS FONT SIZE: " + t.player.getOption( "captions", "fontSize" ) );
+					console.log( "YT CAPTIONS FONT SIZE: " + t.player.getOptions( 'captions' ) );
 				}
 			}
 		} );
