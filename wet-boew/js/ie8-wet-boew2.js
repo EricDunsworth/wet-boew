@@ -8352,6 +8352,9 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			}
 		} );
 
+		console.log( "test2..." );
+		console.log( ytPlayer.getOptions( 'captions' ) );
+
 		$this.addClass( "youtube" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
