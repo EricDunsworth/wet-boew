@@ -8346,7 +8346,8 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
-					console.log( t.player.getOption( "captions", "fontSize" ) );
+					console.log( "test..." );
+					console.log( "YT CAPTIONS FONT SIZE: " + t.player.getOption( "captions", "fontSize" ) );
 				}
 			}
 		} );
