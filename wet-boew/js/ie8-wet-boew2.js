@@ -8150,9 +8150,11 @@ var componentName = "wb-mltmd",
 				try {
 					this.object.loadModule( "cc" );
 					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
+					console.log("YouTube cc language: " + languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode );
 				} catch ( e ) {
 					this.object.loadModule( "captions" );
 					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+					console.log("YouTube captions language: " + languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode );
 				}
 			} else {
 				$( this ).removeClass( captionClass );
