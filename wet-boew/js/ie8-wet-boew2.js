@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-05
+ * v4.0.38 - 2020-10-06
  *
  *//**
  * @title WET-BOEW JQuery Helper Methods
@@ -8347,7 +8347,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 					console.log( "test..." );
-					console.log( "YT CAPTIONS FONT SIZE: " + t.player.getOptions( 'captions' ) );
+					console.log( "YT CAPTIONS FONT SIZE: " + this.getOptions( 'captions' ) );
 				}
 			}
 		} );
