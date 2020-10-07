@@ -8430,8 +8430,8 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		}
 
 		// Show the CC button
-		//$this.find( ".lastpnl" ).removeAttr( "hidden" );
-		//console.log( "unveiling CC button for " + data.id);
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
+		console.log( "unveiling CC button for " + data.id);
 
 		if ( data.captions === undef ) {
 			//console.log( "uh oh!!! captions weren't defined at all..." );
