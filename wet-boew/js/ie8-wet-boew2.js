@@ -8433,7 +8433,9 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			// Show the CC button
 			$this.find( ".lastpnl" ).removeAttr( "hidden" );
 			console.log( "unveiling CC button for " + data.id );
-		} else {
+		}
+
+		if ( data.captions === undef ) {
 			return 1;
 		}
 
