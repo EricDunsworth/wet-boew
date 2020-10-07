@@ -8429,7 +8429,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 				.trigger( "wb-init.wb-share" );
 		}
 
-		if ( data.captions || data.ytPlayer ) {
+		if ( data.captions !== undef || data.ytPlayer ) {
 			// Show the CC button
 			$this.find( ".lastpnl" ).removeAttr( "hidden" );
 			console.log( "unveiling CC button for " + data.id );
