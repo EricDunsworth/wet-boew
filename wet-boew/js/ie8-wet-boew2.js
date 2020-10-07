@@ -8150,11 +8150,11 @@ var componentName = "wb-mltmd",
 				try {
 					this.object.loadModule( "cc" );
 					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
-					console.log("YouTube cc language: " + this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode );
+					//console.log("YouTube cc language: " + this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode );
 				} catch ( e ) {
 					this.object.loadModule( "captions" );
 					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
-					console.log("YouTube captions language: " + this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode );
+					//console.log("YouTube captions language: " + this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode );
 				}
 			} else {
 				$( this ).removeClass( captionClass );
@@ -8348,14 +8348,14 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
-					console.log( "test..." );
-					console.log( "YT CAPTIONS FONT SIZE: " + this.getOptions( 'captions' ) );
+					//console.log( "test..." );
+					//console.log( "YT CAPTIONS FONT SIZE: " + this.getOptions( 'captions' ) );
 				}
 			}
 		} );
 
-		console.log( "test2..." );
-		console.log( ytPlayer.getOptions( 'captions' ) );
+		//console.log( "test2..." );
+		//console.log( ytPlayer.getOptions( 'captions' ) );
 
 		$this.addClass( "youtube" );
 
@@ -8428,8 +8428,8 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		}
 
 		if ( data.captions === undef ) {
-			console.log( "uh oh!!! captions weren't defined at all..." );
-			$this.find( ".lastpnl" ).attr( "hidden", "" );
+			//console.log( "uh oh!!! captions weren't defined at all..." );
+			//$this.find( ".lastpnl" ).attr( "hidden", "" );
 			return 1;
 		}
 
@@ -8439,6 +8439,9 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		} else {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
+
+		// Show the CC button
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
 	}
 } );
 

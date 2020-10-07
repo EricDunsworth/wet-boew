@@ -8176,7 +8176,7 @@ body.wb-modal .modal-dialog summary {
 /*
   Multimedia Player Code
  */
-.wb-mltmd.youtube.cc_on .wb-mm-cc, .wb-mm-ctrls .lastpnl[hidden] {
+.wb-mltmd.cc_off .lastpnl, .wb-mltmd.youtube.cc_on .wb-mm-cc, .wb-mm-ctrls .lastpnl[hidden] {
   display: none; }
 
 .wb-mm-ctrls .btn:focus, .wb-mm-ctrls progress:focus, .wb-mm-ctrls input:focus[type=range] {
