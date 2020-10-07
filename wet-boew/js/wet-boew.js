@@ -9054,6 +9054,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		// Show the CC button
 		$this.find( ".lastpnl" ).removeAttr( "hidden" );
+		console.log( "unveiling CC button" );
 
 		// Load the captions
 		if ( currentUrl.absolute.replace( currentUrl.hash || "#", "" ) !== captionsUrl.absolute.replace( captionsUrl.hash || "#", "" ) ) {
