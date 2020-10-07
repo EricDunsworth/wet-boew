@@ -581,7 +581,7 @@ Modernizr.load( [
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=Accessible",
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@WET_BOEW_VERSION_MATHJAX/MathJax.js?config=Accessible",
 						complete: function() {
 							Modernizr.load( [ {
 								test: window.MathJax === undefined,
@@ -9052,15 +9052,15 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			return 1;
 		}
 
+		// Show the CC button
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
+
 		// Load the captions
 		if ( currentUrl.absolute.replace( currentUrl.hash || "#", "" ) !== captionsUrl.absolute.replace( captionsUrl.hash || "#", "" ) ) {
 			loadCaptionsExternal( $media, captionsUrl.absolute );
 		} else {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
-
-		// Show the CC button
-		$this.find( ".lastpnl" ).removeAttr( "hidden" );
 	}
 } );
 

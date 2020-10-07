@@ -8433,15 +8433,15 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			return 1;
 		}
 
+		// Show the CC button
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
+
 		// Load the captions
 		if ( currentUrl.absolute.replace( currentUrl.hash || "#", "" ) !== captionsUrl.absolute.replace( captionsUrl.hash || "#", "" ) ) {
 			loadCaptionsExternal( $media, captionsUrl.absolute );
 		} else {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
-
-		// Show the CC button
-		$this.find( ".lastpnl" ).removeAttr( "hidden" );
 	}
 } );
 
