@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-06
+ * v4.0.38 - 2020-10-07
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /* Modernizr (Custom Build) | MIT & BSD
@@ -3882,7 +3882,7 @@ Modernizr.load( [
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@WET_BOEW_VERSION_MATHJAX/MathJax.js?config=Accessible",
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=Accessible",
 						complete: function() {
 							Modernizr.load( [ {
 								test: window.MathJax === undefined,
