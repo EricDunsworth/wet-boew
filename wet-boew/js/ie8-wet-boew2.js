@@ -8359,6 +8359,8 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		$this.addClass( "youtube" );
 
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
+
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
 		data.media = $media;
