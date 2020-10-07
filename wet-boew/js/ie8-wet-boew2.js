@@ -8429,17 +8429,17 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 				.trigger( "wb-init.wb-share" );
 		}
 
-
+		if ( data.captions === undef || data.ytPlayer ) {
+			// Show the CC button
+			$this.find( ".lastpnl" ).removeAttr( "hidden" );
+			console.log( "unveiling CC button for " + data.id );
+		}
 
 		if ( data.captions === undef ) {
 			//console.log( "uh oh!!! captions weren't defined at all..." );
 			//$this.find( ".lastpnl" ).attr( "hidden", "" );
 			console.log("trying to return for this media player ID: " + data.id);
 			return 1;
-		} else {
-			// Show the CC button
-			$this.find( ".lastpnl" ).removeAttr( "hidden" );
-			console.log( "unveiling CC button for " + data.id);
 		}
 
 		// Load the captions
