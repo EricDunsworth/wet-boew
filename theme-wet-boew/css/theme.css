@@ -8241,7 +8241,7 @@ body.wb-modal .modal-dialog summary {
     display: block;
     margin-left: -2px;
     width: 1.2em; }
-  .wb-mltmd.youtube .display:before {
+  .wb-mltmd.youtube.video:not(.playing):not(.waiting) .display:before {
     background: #3e3e3e; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
