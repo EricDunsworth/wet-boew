@@ -2,7 +2,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-07
+ * v4.0.38 - 2020-10-08
  *
  */
 /*
@@ -8176,7 +8176,7 @@ body.wb-modal .modal-dialog summary {
 /*
   Multimedia Player Code
  */
-.wb-mltmd.cc_off .lastpnl, .wb-mltmd.youtube.cc_on .wb-mm-cc, .wb-mm-ctrls .lastpnl[hidden] {
+.wb-mltmd.audio .lastpnl, .wb-mltmd.youtube.cc_on .wb-mm-cc {
   display: none; }
 
 .wb-mm-ctrls .btn:focus, .wb-mm-ctrls progress:focus, .wb-mm-ctrls input:focus[type=range] {
@@ -8220,6 +8220,8 @@ body.wb-modal .modal-dialog summary {
     font-family: "Glyphicons Halflings";
     font-size: 65px;
     text-align: center; }
+  .wb-mltmd.video.playing .errmsg {
+    display: none; }
   .wb-mltmd.video.waiting .display {
     position: relative; }
     .wb-mltmd.video.waiting .display:before, .wb-mltmd.video.waiting .display:after {
@@ -8233,12 +8235,14 @@ body.wb-modal .modal-dialog summary {
     display: table;
     height: 4em;
     padding: .5em; }
-  .wb-mltmd.cc_on:not(.errmsg) .cc:after {
+  .wb-mltmd.cc_on .cc:after {
     border-bottom: 3px solid #4aafff;
     content: " ";
     display: block;
     margin-left: -2px;
     width: 1.2em; }
+  .wb-mltmd.youtube .display:before {
+    background: #3e3e3e; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
     color: #000; }
@@ -8249,8 +8253,6 @@ body.wb-modal .modal-dialog summary {
         background: #fff;
         border: 0;
         color: #000; }
-        .wb-mltmd.skn-lt .wb-mm-ctrls .btn[disabled]:active:hover {
-          color: #000; }
   .wb-mltmd .wb-share {
     text-align: right; }
 
@@ -8284,10 +8286,6 @@ body.wb-modal .modal-dialog summary {
     border-top-right-radius: 0 !important;
     color: #fff;
     font-size: 130%; }
-    .wb-mm-ctrls .btn[disabled]:active:hover {
-      color: #fff; }
-    .wb-mm-ctrls .btn[disabled]:hover {
-      background-color: transparent; }
   .wb-mm-ctrls .frstpnl {
     text-align: center;
     width: 13em; }

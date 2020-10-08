@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-07
+ * v4.0.38 - 2020-10-08
  *
  *//**
  * @title WET-BOEW JQuery Helper Methods
@@ -8150,11 +8150,9 @@ var componentName = "wb-mltmd",
 				try {
 					this.object.loadModule( "cc" );
 					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
-					//console.log("YouTube cc language: " + this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode );
 				} catch ( e ) {
 					this.object.loadModule( "captions" );
 					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
-					//console.log("YouTube captions language: " + this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode );
 				}
 			} else {
 				$( this ).removeClass( captionClass );
@@ -8348,18 +8346,11 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
-					//console.log( "test..." );
-					//console.log( "YT CAPTIONS FONT SIZE: " + this.getOptions( 'captions' ) );
 				}
 			}
 		} );
 
-		//console.log( "test2..." );
-		//console.log( ytPlayer.getOptions( 'captions' ) );
-
 		$this.addClass( "youtube" );
-
-		$this.find( ".lastpnl" ).removeAttr( "hidden" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
@@ -8427,12 +8418,6 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
-		}
-
-		if ( data.captions !== undef || data.ytPlayer ) {
-			// Show the CC button
-			$this.find( ".lastpnl" ).removeAttr( "hidden" );
-			console.log( "unveiling CC button for " + data.id );
 		}
 
 		if ( data.captions === undef ) {
@@ -8650,14 +8635,11 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 
 	case "ccloadfail":
 		if ( eventNamespace === componentName ) {
-			if ( !$this.hasClass( "errmsg" ) ) {
-				$this.addClass( "cc_on errmsg" )
-					.find( ".wb-mm-cc" )
-					.append( "<div>" + i18nText.cc_error + "</div>" )
-					.end()
-					.find( ".cc" )
-					.attr( "disabled", "" );
-			}
+			$this.find( ".wb-mm-cc" )
+				.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
+				.end()
+				.find( ".cc" )
+				.attr( "disabled", "" );
 		}
 		break;
 
