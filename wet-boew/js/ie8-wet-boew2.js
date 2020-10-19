@@ -8108,13 +8108,13 @@ var componentName = "wb-mltmd",
 		case "play":
 			return this.object.playVideo();
 		case "pause":
-			$(this).addClass( "paused" )
-			console.log("YT case pause!!!2");
+			//$(this).addClass( "paused" )
+			//console.log("YT case pause!!!2");
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
-			$(this).addClass( "paused" )
-			console.log("YT case pause!!!3");
+			//$(this).addClass( "paused" )
+			//console.log("YT case pause!!!3");
 			return state === -1 || state === 0 || state === 2 || state === 5;
 		case "getPlayed":
 			return this.object.getPlayerState() > -1;
@@ -8572,7 +8572,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.removeClass( "playing" );
+			$this.addClass( "paused" ).removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
