@@ -8828,6 +8828,9 @@ var componentName = "wb-mltmd",
 			break;
 		case 2:
 			console.log("gonna pause!!!");
+			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+			$mltmPlayerElm.addClass("paused");
+
 			$media.trigger( "pause" );
 			media.timeline = clearInterval( media.timeline );
 			break;
