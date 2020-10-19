@@ -8109,9 +8109,11 @@ body.wb-modal .modal-dialog summary {
       background: #3e3e3e; }
     .wb-mltmd.youtube.paused iframe {
       opacity: 0;
-      transition: none; }
+      transition: none;
+      visibility: hidden;
+      /*needed to prevent recommendations from still being clickable through the grey/black area... plus it expands the pause screen's clickable area*/ }
     .wb-mltmd.youtube .display {
-      background-color: #888; }
+      background-color: #000; }
     .wb-mltmd.youtube iframe {
       transition: opacity .5s ease-in; }
   .wb-mltmd.skn-lt {
