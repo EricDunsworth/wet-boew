@@ -8250,15 +8250,16 @@ body.wb-modal .modal-dialog summary {
 		-Where do things stand for the "waiting" class? What does its presence signify? Is it useless for YouTube?
 		-Can the "audio" class or some other option be used to force the YouTube player into audio mode? Is yes... move this selector into &.video...
 		-Should element selectors come before class selectors? Or vice versa?
+		-Resuming playback seems to cause the initial transition colour to be white (why?)... looks like a flash effect instead of fading in from grey :S
 		*/ }
     .wb-mltmd.youtube.video:not(.playing):not(.waiting) .display:before {
       background: #3e3e3e; }
-    .wb-mltmd.youtube.paused .display {
-      background-color: #888; }
     .wb-mltmd.youtube.paused iframe {
       opacity: 0;
       -webkit-transition: none;
       transition: none; }
+    .wb-mltmd.youtube .display {
+      background-color: #888; }
     .wb-mltmd.youtube iframe {
       -webkit-transition: opacity .5s ease-in;
       transition: opacity .5s ease-in; }
