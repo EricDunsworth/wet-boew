@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-08
+ * v4.0.38 - 2020-10-19
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /* Modernizr (Custom Build) | MIT & BSD
@@ -7308,7 +7308,7 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Handler for clicking on a same page link within the overlay to outside the overlay
 $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
 	var which = event.which,
-		eventTarget = event.target,
+		eventTarget = event.currentTarget,
 		$lightbox, linkTarget;
 
 	// Ignore middle/right mouse buttons
@@ -9179,13 +9179,13 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			$this.addClass( "playing" );
+			$this.addClass( "playing" ).removeClass( "paused" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.removeClass( "playing" );
+			$this.addClass( "paused" ).removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
@@ -12505,7 +12505,7 @@ var componentName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	initAria = function( link, data ) {
-		var i, len, elm, elms, parent, tabs, tab, panel, isOpen,
+		var i, len, elm, elms, parent, tabs, tab, panel, isOpen, wrapper,
 			ariaControls = "",
 			hasOpen = false;
 
@@ -12544,12 +12544,25 @@ var componentName = "wb-toggle",
 					if ( !tab.getAttribute( "id" ) ) {
 						tab.setAttribute( "id", wb.getId() );
 					}
-					tab.setAttribute( "role", "tab" );
-					tab.setAttribute( "aria-selected", isOpen );
-					tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
-					tab.setAttribute( "aria-posinset", i + 1 );
-					tab.setAttribute( "aria-setsize", len );
 
+					//Details and summary don't support aria roles and some aria attribute that is why they are wrapped in a div
+					if ( elm.nodeName.toLowerCase() === "details" ) {
+						wrapper = document.createElement( "div" );
+						wrapper.classList.add( "tgl-tab" );
+						wrapper.setAttribute( "role", "tab" );
+						wrapper.setAttribute( "aria-selected", isOpen );
+						wrapper.setAttribute( "tabindex", isOpen ? "0" : "-1" );
+						wrapper.setAttribute( "aria-posinset", i + 1 );
+						wrapper.setAttribute( "aria-setsize", len );
+						parent.replaceChild( wrapper, elm );
+						wrapper.appendChild( elm );
+					} else {
+						tab.setAttribute( "role", "tab" );
+						tab.setAttribute( "aria-selected", isOpen );
+						tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
+						tab.setAttribute( "aria-posinset", i + 1 );
+						tab.setAttribute( "aria-setsize", len );
+					}
 					panel.setAttribute( "role", "tabpanel" );
 					panel.setAttribute( "aria-labelledby", tab.getAttribute( "id" ) );
 					panel.setAttribute( "aria-expanded", isOpen );
@@ -12740,7 +12753,7 @@ var componentName = "wb-toggle",
 			if ( data.isTablist ) {
 
 				// Set the required aria attributes
-				$elms.find( selectorTab ).attr( {
+				$elms.find( selectorTab ).parents( selectorTab ).attr( {
 					"aria-selected": isOn,
 					tabindex: isOn ? "0" : "-1"
 				} );
