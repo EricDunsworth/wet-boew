@@ -581,7 +581,7 @@ Modernizr.load( [
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=Accessible",
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@WET_BOEW_VERSION_MATHJAX/MathJax.js?config=Accessible",
 						complete: function() {
 							Modernizr.load( [ {
 								test: window.MathJax === undefined,
@@ -8727,6 +8727,7 @@ var componentName = "wb-mltmd",
 		case "play":
 			return this.object.playVideo();
 		case "pause":
+			console.log("YT case pause!!!");
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
@@ -9174,7 +9175,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
+		console.log("Document case pause!!!");
 	case "ended":
+		console.log("Document case ended!!!");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );

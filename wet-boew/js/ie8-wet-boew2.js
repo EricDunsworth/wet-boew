@@ -8108,6 +8108,7 @@ var componentName = "wb-mltmd",
 		case "play":
 			return this.object.playVideo();
 		case "pause":
+			console.log("YT case pause!!!");
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
@@ -8555,7 +8556,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
+		console.log("Document case pause!!!");
 	case "ended":
+		console.log("Document case ended!!!");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
