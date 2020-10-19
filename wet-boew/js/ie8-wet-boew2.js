@@ -8559,21 +8559,21 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
-		//$this.addClass( "paused" );
-		//console.log("Document case pause!!!2");
+		$this.classList.add( "paused" );
 	case "ended":
-		console.log("Document case ended!!!2");
+		console.log("Document case ended!!!4");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			$this.addClass( "playing" ).removeClass( "paused" );
+			$this.classList.remove( "paused" );
+			$this.addClass( "playing" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.addClass( "paused" ).removeClass( "playing" );
+			$this.removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
