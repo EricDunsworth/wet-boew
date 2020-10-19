@@ -9190,7 +9190,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
 			//eventTarget.classList.remove( "paused" );
-			$this.addClass( "playing" ).remove( "paused" );
+			$this.addClass( "playing" ).removeClass( "paused" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
 			if ( eventType === "ended" ) {
