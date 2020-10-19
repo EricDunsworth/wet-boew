@@ -8260,8 +8260,8 @@ body.wb-modal .modal-dialog summary {
       -webkit-transition: none;
       transition: none; }
     .wb-mltmd.youtube iframe {
-      -webkit-transition: opacity .5s;
-      transition: opacity .5s; }
+      -webkit-transition: opacity .5s ease-in;
+      transition: opacity .5s ease-in; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
     color: #000; }

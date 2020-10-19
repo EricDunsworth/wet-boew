@@ -8112,7 +8112,7 @@ body.wb-modal .modal-dialog summary {
       opacity: 0;
       transition: none; }
     .wb-mltmd.youtube iframe {
-      transition: opacity .5s; }
+      transition: opacity .5s ease-in; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
     color: #000; }

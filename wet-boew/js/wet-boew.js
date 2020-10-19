@@ -8732,6 +8732,8 @@ var componentName = "wb-mltmd",
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
+			$(this).addClass( "paused" )
+			console.log("YT case pause!!!3");
 			return state === -1 || state === 0 || state === 2 || state === 5;
 		case "getPlayed":
 			return this.object.getPlayerState() > -1;
