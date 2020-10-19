@@ -8208,6 +8208,7 @@ var componentName = "wb-mltmd",
 			media.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
+			console.log("gonna pause!!!");
 			$media.trigger( "pause" );
 			media.timeline = clearInterval( media.timeline );
 			break;
