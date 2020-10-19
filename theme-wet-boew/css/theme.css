@@ -8256,7 +8256,12 @@ body.wb-modal .modal-dialog summary {
     .wb-mltmd.youtube.paused .display {
       background-color: #888; }
     .wb-mltmd.youtube.paused iframe {
-      visibility: hidden; }
+      opacity: 0;
+      -webkit-transition: none;
+      transition: none; }
+    .wb-mltmd.youtube iframe {
+      -webkit-transition: opacity .5s;
+      transition: opacity .5s; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
     color: #000; }

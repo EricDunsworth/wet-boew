@@ -8109,7 +8109,10 @@ body.wb-modal .modal-dialog summary {
     .wb-mltmd.youtube.paused .display {
       background-color: #888; }
     .wb-mltmd.youtube.paused iframe {
-      visibility: hidden; }
+      opacity: 0;
+      transition: none; }
+    .wb-mltmd.youtube iframe {
+      transition: opacity .5s; }
   .wb-mltmd.skn-lt {
     border-bottom: 1px solid #ddd;
     color: #000; }
