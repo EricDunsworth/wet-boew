@@ -8208,9 +8208,9 @@ var componentName = "wb-mltmd",
 			media.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
-			console.log("gonna pause!!!");
-			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
-			$mltmPlayerElm.addClass("paused");
+			//console.log("gonna pause!!!");
+			//$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+			//$mltmPlayerElm.addClass("paused");
 
 			$media.trigger( "pause" );
 			media.timeline = clearInterval( media.timeline );
@@ -8563,21 +8563,21 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
-		eventTarget.classList.add( "paused" );
+		//eventTarget.classList.add( "paused" );
 	case "ended":
 		console.log("Document case ended!!!4");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			eventTarget.classList.remove( "paused" );
-			$this.addClass( "playing" );
+			//eventTarget.classList.remove( "paused" );
+			$this.addClass( "playing" ).remove( "paused" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.removeClass( "playing" );
+			$this.addClass( "paused" ).removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
