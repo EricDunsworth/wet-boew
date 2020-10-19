@@ -9178,14 +9178,14 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
-		$this.classList.add( "paused" );
+		eventTarget.classList.add( "paused" );
 	case "ended":
 		console.log("Document case ended!!!4");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			$this.classList.remove( "paused" );
+			eventTarget.classList.remove( "paused" );
 			$this.addClass( "playing" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
