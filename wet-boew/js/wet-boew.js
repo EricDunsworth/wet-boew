@@ -8727,6 +8727,7 @@ var componentName = "wb-mltmd",
 		case "play":
 			return this.object.playVideo();
 		case "pause":
+			$this.addClass( "paused" )
 			console.log("YT case pause!!!");
 			return this.object.pauseVideo();
 		case "getPaused":
@@ -9188,7 +9189,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.addClass( "paused" ).removeClass( "playing" );
+			$this.removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
