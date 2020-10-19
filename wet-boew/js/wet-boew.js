@@ -9178,9 +9178,10 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
-		console.log("Document case pause!!!");
+		$this.addClass( "paused" )
+		console.log("Document case pause!!!1");
 	case "ended":
-		console.log("Document case ended!!!");
+		console.log("Document case ended!!!1");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
@@ -9191,7 +9192,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.addClass( "paused" ).removeClass( "playing" );
+			$this.removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
