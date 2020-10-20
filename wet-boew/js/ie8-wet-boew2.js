@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-19
+ * v4.0.38 - 2020-10-20
  *
  *//**
  * @title WET-BOEW JQuery Helper Methods
@@ -7980,12 +7980,20 @@ var componentName = "wb-mltmd",
 				return data.replace( /<img|object [^>]*>/g, "" );
 			},
 			success: function( data ) {
-				elm.trigger( {
-					type: captionsLoadedEvent,
-					captions: data.indexOf( "<html" ) !== -1 ?
-						parseHtml( $( data ) ) :
-						parseXml( $( data ) )
-				} );
+				var captionItems = data.indexOf( "<html" ) !== -1 ?
+					parseHtml( $( data ) ) :
+					parseXml( $( data ) );
+
+				if ( captionItems.length ) {
+					elm.trigger( {
+						type: captionsLoadedEvent,
+						captions: captionItems
+					} );
+				} else {
+					elm.trigger( {
+						type: captionsLoadFailedEvent
+					} );
+				}
 			},
 			error: function( response, textStatus, errorThrown ) {
 				elm.trigger( {
@@ -8004,10 +8012,18 @@ var componentName = "wb-mltmd",
 	 * @fires ccloaded.wb-mltmd
 	 */
 	loadCaptionsInternal = function( elm, obj ) {
-		elm.trigger( {
-			type: captionsLoadedEvent,
-			captions: parseHtml( obj )
-		} );
+		var captionItems = parseHtml( obj );
+
+		if ( captionItems.length ) {
+			elm.trigger( {
+				type: captionsLoadedEvent,
+				captions: captionItems
+			} );
+		} else {
+			elm.trigger( {
+				type: captionsLoadFailedEvent
+			} );
+		}
 	},
 
 	/**
@@ -8108,13 +8124,9 @@ var componentName = "wb-mltmd",
 		case "play":
 			return this.object.playVideo();
 		case "pause":
-			//$(this).addClass( "paused" )
-			//console.log("YT case pause!!!2");
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
-			//$(this).addClass( "paused" )
-			//console.log("YT case pause!!!3");
 			return state === -1 || state === 0 || state === 2 || state === 5;
 		case "getPlayed":
 			return this.object.getPlayerState() > -1;
@@ -8154,9 +8166,11 @@ var componentName = "wb-mltmd",
 				try {
 					this.object.loadModule( "cc" );
 					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
+					//console.log("YouTube cc language: " + this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode );
 				} catch ( e ) {
 					this.object.loadModule( "captions" );
 					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+					//console.log("YouTube captions language: " + this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode );
 				}
 			} else {
 				$( this ).removeClass( captionClass );
@@ -8208,10 +8222,6 @@ var componentName = "wb-mltmd",
 			media.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
-			//console.log("gonna pause!!!");
-			//$mltmPlayerElm = $media.parentsUntil( selector ).parent();
-			//$mltmPlayerElm.addClass("paused");
-
 			$media.trigger( "pause" );
 			media.timeline = clearInterval( media.timeline );
 			break;
@@ -8354,11 +8364,18 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
+					//console.log( "test..." );
+					//console.log( "YT CAPTIONS FONT SIZE: " + this.getOptions( 'captions' ) );
 				}
 			}
 		} );
 
+		//console.log( "test2..." );
+		//console.log( ytPlayer.getOptions( 'captions' ) );
+
 		$this.addClass( "youtube" );
+
+		$this.find( ".lastpnl" ).removeAttr( "hidden" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
@@ -8428,6 +8445,28 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 				.trigger( "wb-init.wb-share" );
 		}
 
+		if ( data.captions !== undef || data.ytPlayer ) {
+			// Show the CC button
+			$this.find( ".lastpnl" ).removeAttr( "hidden" );
+			console.log( "unveiling CC button for " + data.id );
+
+			/*TODOS: Needs further testing for these:
+			-Videos that have CC errors
+			-Testing that disable class
+			-Other browsers
+
+			RANDOM STUFF:
+			-Hide YT recommendations when YT videos pause (status quo looks strange + inaccessible)... already have a branch for that, but it has some flickering problems
+			-YT poster image swap trick (unsure of hotlinking implications) (this method would reduce bloat and allow opacity translucency for initial play button)
+			-Pressing mute on YT video before playback will cause button to go into pressed state without muting
+			-Seeking in paused YT videos causes current frame to appear... but progress bar highlight isn't updated
+			-Seeking in an unplayed YT video immediately causes playback to start... normal vids don't do that (at least not in FF)
+			-YT player's white text overlay contrast is poor... maybe inject one with accessible contrast
+			-YT video's second counter sometimes ends at 30 seconds... despite counter showing 32... weird mismatch
+			-
+			*/
+		}
+
 		if ( data.captions === undef ) {
 			return 1;
 		}
@@ -8459,7 +8498,7 @@ $document.on( "click", selector, function( event ) {
 	// JSPerf for multiple class matching https://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|display/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
 		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player( "play" ) : this.player( "pause" );
-	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
+	} else if ( className.match( /(^|\s)cc\b|-subtitles/ ) && !$target.attr( "disabled" ) && !$target.parent().attr( "disabled" ) ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
@@ -8563,21 +8602,18 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 	switch ( eventType ) {
 	case "playing":
 	case "pause":
-		//eventTarget.classList.add( "paused" );
 	case "ended":
-		console.log("Document case ended!!!4");
 		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			//eventTarget.classList.remove( "paused" );
-			$this.addClass( "playing" ).removeClass( "paused" );
+			$this.addClass( "playing" );
 			$this.find( ".progress" ).addClass( "active" );
 		} else {
 			if ( eventType === "ended" ) {
 				this.loading = clearTimeout( this.loading );
 			}
-			$this.addClass( "paused" ).removeClass( "playing" );
+			$this.removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
@@ -8646,11 +8682,15 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 
 	case "ccloadfail":
 		if ( eventNamespace === componentName ) {
-			$this.find( ".wb-mm-cc" )
-				.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
-				.end()
-				.find( ".cc" )
-				.attr( "disabled", "" );
+			if ( !$this.hasClass( "errmsg" ) ) {
+				$this.addClass( "cc_on errmsg" )
+					.find( ".wb-mm-cc" )
+					.append( "<div>" + i18nText.cc_error + "</div>" )
+					.end()
+					.find( ".cc" )
+					.attr( "disabled", "" )
+					.removeAttr( "aria-pressed" );
+			}
 		}
 		break;
 
