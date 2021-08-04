@@ -2,7 +2,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.38 - 2020-10-20
+ * v4.0.43.1 - 2021-08-02
  *
  */
 /*
@@ -5954,7 +5954,8 @@ abbr[title] {
     border-bottom: 0;
     -webkit-text-decoration: underline dotted;
             text-decoration: underline dotted;
-    text-decoration-skip-ink: none; } }
+    -webkit-text-decoration-skip-ink: none;
+            text-decoration-skip-ink: none; } }
 
 /*
  *	Override the design of alerts and labels
@@ -6310,6 +6311,9 @@ mark {
   background-color: #ff0;
   color: #000;
   font-weight: 700; }
+
+[hidden] {
+  display: none !important; }
 
 /*
   WET-BOEW
@@ -7156,14 +7160,17 @@ q:before, q:after {
 
 .colcount-xxs-2 {
   -webkit-column-count: 2;
+     -moz-column-count: 2;
           column-count: 2; }
 
 .colcount-xxs-3 {
   -webkit-column-count: 3;
+     -moz-column-count: 3;
           column-count: 3; }
 
 .colcount-xxs-4 {
   -webkit-column-count: 4;
+     -moz-column-count: 4;
           column-count: 4; }
 
 .full-width {
@@ -7245,6 +7252,42 @@ details {
   details[open] {
     padding-bottom: 1em; }
 
+/*
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ * Components and helpers style for WET-BOEW
+ */
+/*
+ Background Utility CSS
+ */
+.bg-cover {
+  background-size: cover; }
+
+.bg-center {
+  background-position: center; }
+
+.bg-norepeat {
+  background-repeat: no-repeat; }
+
+/*
+ Additional color
+ */
+.bg-darker {
+  background-color: #000; }
+
+/*
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ */
+/*
+.provisional {
+	// Add provisional CSS here
+}
+*/
 /*
  Plugins
  */
@@ -7441,6 +7484,40 @@ details.alert, details.alert[open] {
 .wb-dismissable-wrapper {
   display: table-cell;
   width: 100%; }
+
+.wb-eqht-grd {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 100%; }
+  .wb-eqht-grd > [class*="col-"] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .wb-eqht-grd > [class*="col-"] > section, .wb-eqht-grd > [class*="col-"] .hght-inhrt {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
+  .wb-eqht-grd.grow > [class*="col-"] {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
 
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
@@ -8012,6 +8089,17 @@ body.wb-modal .modal-dialog summary {
   /* Should fix upstream in Magnific Popup rather than overriding in WET */ }
 
 /* Should fix upstream in Magnific Popup rather than overriding in WET */
+.mfp-arrow {
+  opacity: 1; }
+
+.mfp-arrow-left:before,
+.mfp-arrow-left .mfp-b {
+  border-right: 27px solid #000000; }
+
+.mfp-arrow-right:before,
+.mfp-arrow-right .mfp-b {
+  border-left: 27px solid #000000; }
+
 /* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-bottom-bar .mfp-title {
   padding-right: 5px;
@@ -8176,7 +8264,7 @@ body.wb-modal .modal-dialog summary {
 /*
   Multimedia Player Code
  */
-.wb-mltmd.cc_off .lastpnl, .wb-mltmd.youtube.cc_on .wb-mm-cc, .wb-mm-ctrls .lastpnl[hidden] {
+.wb-mltmd.audio .lastpnl, .wb-mltmd.youtube.cc_on .wb-mm-cc {
   display: none; }
 
 .wb-mm-ctrls .btn:focus, .wb-mm-ctrls progress:focus, .wb-mm-ctrls input:focus[type=range] {
@@ -8200,7 +8288,7 @@ body.wb-modal .modal-dialog summary {
 
 .wb-mm-cc:before, .wb-mm-cc div {
   display: table-cell;
-  height: 3em;
+  height: 2.875em;
   vertical-align: middle; }
 
 .wb-mltmd {
@@ -8231,8 +8319,8 @@ body.wb-modal .modal-dialog summary {
     width: 100%; }
   .wb-mltmd.cc_on .wb-mm-cc {
     display: table;
-    height: 4em;
-    padding: .5em; }
+    height: calc(2.875em + 1em);
+    padding: 0.5em; }
   .wb-mltmd.cc_on:not(.errmsg) .cc:after {
     border-bottom: 3px solid #4aafff;
     content: " ";
@@ -8255,6 +8343,10 @@ body.wb-modal .modal-dialog summary {
           color: #000; }
   .wb-mltmd .wb-share {
     text-align: right; }
+  .wb-mltmd summary,
+  .wb-mltmd details[open] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
 
 .wb-mm-cc {
   background-color: #000;
@@ -8589,93 +8681,87 @@ ol.linenums {
     vertical-align: middle;
     width: 32px; }
 
-.shr-pg .bitly:before {
+.shr-pg .blogger:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: 0px 0px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .blogger:before {
+.shr-pg .diigo:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -32px 0px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .diigo:before {
+.shr-pg .facebook:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: 0px -32px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .facebook:before {
+.shr-pg .feed:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -32px -32px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .feed:before {
+.shr-pg .gmail:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -64px 0px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .gmail:before {
+.shr-pg .linkedin:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -64px -32px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .linkedin:before {
+.shr-pg .myspace:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: 0px -64px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .myspace:before {
+.shr-pg .pinterest:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -32px -64px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .pinterest:before {
+.shr-pg .reddit:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -64px -64px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .reddit:before {
+.shr-pg .tinyurl:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -96px 0px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .tinyurl:before {
+.shr-pg .tumblr:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -96px -32px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .tumblr:before {
+.shr-pg .twitter:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: -96px -64px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .twitter:before {
+.shr-pg .whatsapp:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
   background-position: 0px -96px;
   width: 32px;
   height: 32px; }
 
-.shr-pg .whatsapp:before {
-  background-image: url(../../wet-boew/assets/sprites_share.png);
-  background-position: -32px -96px;
-  width: 32px;
-  height: 32px; }
-
 .shr-pg .yahoomail:before {
   background-image: url(../../wet-boew/assets/sprites_share.png);
-  background-position: -64px -96px;
+  background-position: -32px -96px;
   width: 32px;
   height: 32px; }
 
@@ -10163,12 +10249,15 @@ details {
  */
   .colcount-xs-2 {
     -webkit-column-count: 2;
+       -moz-column-count: 2;
             column-count: 2; }
   .colcount-xs-3 {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3; }
   .colcount-xs-4 {
     -webkit-column-count: 4;
+       -moz-column-count: 4;
             column-count: 4; }
   /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
@@ -10218,12 +10307,15 @@ details {
  */
   .colcount-sm-2 {
     -webkit-column-count: 2;
+       -moz-column-count: 2;
             column-count: 2; }
   .colcount-sm-3 {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3; }
   .colcount-sm-4 {
     -webkit-column-count: 4;
+       -moz-column-count: 4;
             column-count: 4; }
   .pstn-lft-sm {
     position: absolute;
@@ -10262,12 +10354,15 @@ details {
  */
   .colcount-md-2 {
     -webkit-column-count: 2;
+       -moz-column-count: 2;
             column-count: 2; }
   .colcount-md-3 {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3; }
   .colcount-md-4 {
     -webkit-column-count: 4;
+       -moz-column-count: 4;
             column-count: 4; }
   .pstn-lft-md {
     position: absolute;
@@ -10352,12 +10447,15 @@ details {
  */
   .colcount-lg-2 {
     -webkit-column-count: 2;
+       -moz-column-count: 2;
             column-count: 2; }
   .colcount-lg-3 {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3; }
   .colcount-lg-4 {
     -webkit-column-count: 4;
+       -moz-column-count: 4;
             column-count: 4; }
   .pstn-lft-lg {
     position: absolute;
@@ -10466,12 +10564,15 @@ details {
  */
   .colcount-xl-2 {
     -webkit-column-count: 2;
+       -moz-column-count: 2;
             column-count: 2; }
   .colcount-xl-3 {
     -webkit-column-count: 3;
+       -moz-column-count: 3;
             column-count: 3; }
   .colcount-xl-4 {
     -webkit-column-count: 4;
+       -moz-column-count: 4;
             column-count: 4; } }
 
 /* Print view */
@@ -10895,21 +10996,6 @@ main {
   .wb-sl:focus {
     color: #fff;
     text-decoration: none; }
-
-/* Provisional Features */
-/*
- *
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- *
- */
-.provisional {
-  /* Background size cover */
-  /* Background position center */ }
-  .provisional.bg-cover, .provisional .bg-cover {
-    background-size: cover; }
-  .provisional.bg-center {
-    background-position: center; }
 
 /*
  Views

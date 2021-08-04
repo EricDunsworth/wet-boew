@@ -23,7 +23,7 @@
 		
 		<noscript><link rel="stylesheet" href="../../../wet-boew/css/noscript.css" /></noscript>
 	</head>
-	<body vocab="http://schema.org/" typeof="WebPage">
+	<body vocab="http://schema.org/" resource="#wb-webpage" typeof="WebPage">
 		
 <nav>
 	<ul id="wb-tphp">
@@ -97,7 +97,7 @@
 		</div>
 	</nav>
 	<nav role="navigation" id="wb-bc" property="breadcrumb">
-		<h2>Vous êtes ici :</h2>
+		<h2>Piste de navigation</h2>
 		<div class="container">
 			<div class="row">
 				<ol class="breadcrumb">
@@ -114,7 +114,7 @@
 	</nav>
 </header>
 
-	<main role="main" property="mainContentOfPage" class="container">
+	<main role="main" property="mainContentOfPage" resource="#wb-main" class="container">
 		<h1 id="wb-cont" property="name">Fusion des erreurs Serveur-Client</h1>
 		<ul class="list-inline">
 				<li><a class="btn btn-primary" href="../../docs/ref/formvalid/formvalid-fr.html">Documentation</a></li>
@@ -170,7 +170,7 @@
 					<div class="form-group">
 						<label class="required" for="MainContent_TypeOfPrestation">
 							<span class="field-name">Type de prestation</span>
-							<strong class="required">(Champ requis)</strong>
+							<strong class="required" aria-hidden="true">(Champ requis)</strong>
 						</label>
 
 						<div>
@@ -188,14 +188,14 @@
 						<div class="form-group">
 							<label class="required" for="MainContent_BeneficiaryName">
 								<span class="field-name">Nom du bénéficiaire</span>
-								<strong class="required">(Champ requis)</strong>
+								<strong class="required" aria-hidden="true">(Champ requis)</strong>
 								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv"><strong><span class="prefix">Erreur&nbsp;1&nbsp;:
 									</span>Le nom doit commencer par "Super"</strong></span> </label><input name="ctl00$MainContent$BeneficiaryName" class="form-control valid" id="MainContent_BeneficiaryName" aria-invalid="false" required="required" type="text" maxlength="16" value="Moi">
 						</div>
 						<div class="form-group">
 							<label class="required">
 								<span class="field-name">Âge du bénéficiaire</span>
-								<strong class="required">(Champ requis)</strong>
+								<strong class="required" aria-hidden="true">(Champ requis)</strong>
 								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv"><strong><span class="prefix">Erreur&nbsp;2&nbsp;:
 									</span>L'âge doit être entre 64 et 200 pour recevoir des prestations de retraite</strong></span><input name="ctl00$MainContent$BeneficiaryAge" class="form-control css-implicite-input valid" id="MainContent_BeneficiaryAge" aria-invalid="false" required="required" type="number" min="1" max="200" step="1" value="52">
 							</label>
@@ -224,7 +224,7 @@
 						<legend class="required"><span class="field-name">Signature</span> <strong class="required">(Champ requis)</strong></legend>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_0"><input name="checkBoxList1" class="required_js valid" id="MainContent_wbCheckBoxList1_checkBoxList1_0" required="required" type="checkbox" checked="checked" value="checkBoxList1_0v"><span>&nbsp;&nbsp;<span class="field-name">Imprimer cette page</span></span> </label></div>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_1"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_1" type="checkbox" value="checkBoxList1_1v"><span>&nbsp;&nbsp;<span class="field-name">Veuillez m'envoyer de l'information complémentaire</span></span> </label></div>
-						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span>&nbsp;&nbsp;<span class="field-name">Je suis en accord avec les directives</span><strong class="required"> (Champ requis)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv"><strong><span class="prefix">Erreur&nbsp;4&nbsp;: </span>Ce champs est obligatoire</strong></span> </label></div>
+						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span>&nbsp;&nbsp;<span class="field-name">Je suis en accord avec les directives</span><strong class="required" aria-hidden="true"> (Champ requis)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv"><strong><span class="prefix">Erreur&nbsp;4&nbsp;: </span>Ce champs est obligatoire</strong></span> </label></div>
 					</fieldset>
 
 					<ul class="list-inline">
@@ -238,7 +238,7 @@
 
 		<dl id="wb-dtmd">
 			<dt>Date de modification&#160;:&#32;</dt>
-			<dd><time property="dateModified">2018-06-28</time></dd>
+			<dd><time property="dateModified">2021-08-03</time></dd>
 		</dl>
 	</main>
 
