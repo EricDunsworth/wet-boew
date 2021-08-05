@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.43.1 - 2021-08-03
+ * v4.0.43.1 - 2021-08-05
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /* Modernizr (Custom Build) | MIT & BSD
@@ -3792,7 +3792,7 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
  * @prefix: mthjx! - adds the root directory of MathJax resources
  */
 yepnope.addPrefix( "mthjx", function( resourceObj ) {
-	resourceObj.url = paths.js + "/MathJax/es5/" + resourceObj.url;
+	resourceObj.url = paths.js + "/MathJax/" + resourceObj.url;
 	return resourceObj;
 } );
 
@@ -3882,29 +3882,14 @@ Modernizr.load( [
 					// Start initialization
 					wb.init( document, componentName, selector );
 
-					// Disable MathJax's context menu to more closely mimic native MathML implementations
-					window.MathJax = {
-						options: {
-							enableMenu: false
-						}
-					};
-
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-
-						// Load ES6 polyfill (for IE11) and MathJax from CDNs
-						load: [
-							"timeout=500!https://polyfill.io/v3/polyfill.min.js?features=es6",
-							"timeout=500!https://cdn.jsdelivr.net/npm/mathjax@^3.2.0/es5/mml-chtml.js"
-						],
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@^3.2.0/MathJax.js?config=Accessible",
 						complete: function() {
-
-							// Fall back on a local copy MathJax if CDN loading fails
-							// Note: Won't work with IE11 in isolated networks (ES6 polyfill has no local fallback)
 							Modernizr.load( [ {
-								test: window.MathJax.startup === undefined,
-								yep: "mthjx!mml-chtml.js"
+								test: window.MathJax === undefined,
+								yep: "mthjx!MathJax.js?config=Accessible"
 							} ] );
 
 							// Identify that initialization has completed
