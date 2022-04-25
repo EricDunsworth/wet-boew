@@ -11208,10 +11208,15 @@ var componentName = "wb-mltmd",
 
 		switch ( event.data ) {
 		case null:
+			const ytVideoData = media.getVideoData(),
+				ytVideoTitle = ytVideoData[ "title" ];
+
 			$media
 				.trigger( "canplay" )
 				.trigger( "durationchange" )
-				.attr( "title", "Cool video (YT)" );
+				.attr( "title", ytVideoTitle + " (YouTube)" );
+				//TODO: Change YT iframe title attribute to "[Video title] (YouTube)"
+				//TOOD: Leverage undocumented getVideoData() function to get the YT video title + use a fallback for the hardcoded title attribute if it doesn't exist (maybe make it a seperate PR)
 			break;
 		case -1:
 			event.target.unMute();
@@ -11342,6 +11347,8 @@ $document.on( initializedEvent, selector, function( event ) {
 			//TODO: Probably gonna need to go through some hoops for YT videos that don't have predefined title attributes
 
 			//TODO: What if I have contradictory YT title attributes and real video titles? Assuming the YT video has loaded in by this point... which of the conflicting titles will win out?
+
+			//TODO: What if I AJAX-in some title-less videos before hardcoded title-less videos? Will some automatic titles get duplicate numbers (since AJAX stuff will load in later)?
 
 			//Use an if that counts the number of media players in the page...
 			//-If only hit and it lacks a title, don't do anything
