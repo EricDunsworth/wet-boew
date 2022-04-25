@@ -4,17 +4,17 @@
 		<meta charset="utf-8" />
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>Form validation - Old form example
+		<title>Details closed on medium view and down
 		 - Working examples
  - Web Experience Toolkit
 </title>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta name="description" content="Provides generic validation and error message handling for Web forms." />
+		<meta name="description" content="Keep selected details elements closed on medium view and smaller." />
 		
 		
 		
 		
-		<link rel="alternate" hreflang="fr" href="#-fr.html" />
+		<link rel="alternate" hreflang="fr" href="details-close-fr.html" />
 		
 		<link href="../../../theme-wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon" />
 		<link rel="stylesheet" href="../../../theme-wet-boew/css/theme.css" />
@@ -43,7 +43,7 @@
 						<section id="wb-lng" class="visible-md visible-lg">
 							<h2>Language selection</h2>
 							<ul class="text-right">
-								<li><a lang="fr" hreflang="fr" href="#-fr.html">Français</a></li>
+								<li><a lang="fr" hreflang="fr" href="details-close-fr.html">Français</a></li>
 								<li class="curr">English&#32;<span>(current)</span></li>
 							</ul>
 						</section>
@@ -99,14 +99,16 @@
 		<h2>Breadcrumb Navigation</h2>
 		<div class="container">
 			<div class="row">
-				<ol class="breadcrumb">
-					<li>
-						<a href="../../index-en.html">Home</a>
+				<ol class="breadcrumb" typeof="BreadcrumbList">
+					<li property="itemListElement" typeof="ListItem">
+						<a property="item" typeof="WebPage" href="../../index-en.html"><span property="name">Home</span></a>
+						<meta property="position" content="1">
 					</li>
-					<li>
-						<a href="../../demos/index-en.html">Working examples</a>
-					</li>
-					<li>Form validation - Old form example</li>
+							<li property="itemListElement" typeof="ListItem">
+								<a property="item" typeof="WebPage" href="../../demos/index-en.html"><span property="name">Working examples</span></a>
+								<meta property="position" content="2">
+							</li>
+							<li property="itemListElement" typeof="ListItem"><span property="name">Details closed on medium view and down</span><meta property="position" content="3"></li>
 				</ol>
 			</div>
 		</div>
@@ -114,72 +116,51 @@
 </header>
 
 	<main role="main" property="mainContentOfPage" resource="#wb-main" class="container">
-		<h1 id="wb-cont" property="name">Form validation - Old form example</h1>
+		<h1 id="wb-cont" property="name">Details closed on medium view and down</h1>
 		<ul class="list-inline">
-				<li><a class="btn btn-primary" href="../../docs/ref/formvalid/formvalid-en.html">Documentation</a></li>
-			<li><a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title=Form%20validation%20-%20Old%20form%20example:%20">Questions or comments?</a></li>
+				<li><a class="btn btn-primary" href="../../docs/ref/details-close/details-close-en.html">Documentation</a></li>
+			<li><a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title=Details%20closed%20on%20medium%20view%20and%20down:%20">Questions or comments?</a></li>
 		</ul>
 		
-<span class="wb-prettify all-pre hide"></span>
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
+</div>
 
-<p>This test page demonstrates WET's form validation plugin automatically adding <code>aria-hidden="true"</code> attributes to the "required" text in the labels of mandatory fields.</p>
+<h2>Other example</h2>
+<ul>
+	<li><a href="details-close-en.html">Default example</a></li>
+</ul>
 
-<section>
-	<h2>Example</h2>
-	<div class="wb-frmvld">
-		<form action="#" method="get" id="validation-example0">
-			<div class="form-group">
-				<label for="test" class="required"><span class="field-name">Select field</span> <strong class="required">(required)</strong></label>
-				<select class="form-control" id="test" name="test" required>
-					<option label="Select an option"></option>
-					<option value="option1">Option 1</option>
-					<option value="option2">Option 2</option>
-					<option value="option3">Option 3</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<div class="checkbox required">
-					<label><input id="test2" name="test2" type="checkbox" required><span class="field-name">Checkbox field</span> <strong class="required">(required)</strong></label>
-				</div>
-			</div>
-			<div class="form-group">
-				<label id="test3label" class="required"><span class="field-name">Text field</span> <strong class="required">(required)</strong></label>
-				<input class="form-control" id="test3" name="test3" aria-labelledby="test3label" required />
-			</div>
-			<button class="btn btn-primary">Submit</button>
-		</form>
+<h2>Example of <code>details</code> element kept closed on medium viewport and down (md, sm, xs and xxs)</h2>
+<p>Resize your browser to view the plugin at play. Note that setting a different viewport than default on the first instance of <code>.wb-details-close</code> will repeat same setting for all instances of the plugin on the page.</p>
+<div class="row">
+	<div class="col-md-6">
+		<details class="provisional wb-details-close" data-breakpoint="md" open>
+			<summary>I am closed on medium view and down</summary>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+		</details>
 	</div>
-	<details class="mrgn-tp-md">
-		<summary>View code</summary>
-		<pre><code>&lt;div class="wb-frmvld"&gt;
-	&lt;form action="#" method="get" id="validation-example0"&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="test" class="required"&gt;&lt;span class="field-name"&gt;Select field&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
-			&lt;select class="form-control" id="test" name="test" required&gt;
-				&lt;option label="Select an option"&gt;&lt;/option&gt;
-				&lt;option value="option1"&gt;Option 1&lt;/option&gt;
-				&lt;option value="option2"&gt;Option 2&lt;/option&gt;
-				&lt;option value="option3"&gt;Option 3&lt;/option&gt;
-			&lt;/select&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;div class="checkbox required"&gt;
-				&lt;label&gt;&lt;input id="test2" name="test2" type="checkbox" required&gt;&lt;span class="field-name"&gt;Checkbox field&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label id="test3label" class="required"&gt;&lt;span class="field-name"&gt;Text field&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="test3" name="test3" aria-labelledby="test3label" required /&gt;
-		&lt;/div&gt;
-		&lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
-	&lt;/form&gt;
-&lt;/div&gt;</code></pre>
-	</details>
-</section>
+	<div class="col-md-6">
+		<details class="provisional wb-details-close" open>
+			<summary>I follow same settings as the first instance</summary>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+		</details>
+	</div>
+</div>
+
+<h3>Source code</h3>
+<pre><code>&lt;details class="provisional wb-details-close" data-breakpoint="md" open&gt;
+	&lt;summary&gt;I am closed on medium view and down&lt;/summary&gt;
+	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.&lt;/p&gt;
+&lt;/details&gt;
+</code></pre>
 
 		<dl id="wb-dtmd">
 			<dt>Date modified:&#32;</dt>
-			<dd><time property="dateModified">2021-08-05</time></dd>
+			<dd><time property="dateModified">2021-11-29</time></dd>
 		</dl>
 	</main>
 

@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Šobdrīdējā pozīcija:",
 	dur: "Kopējais laiks:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Ieteikt",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Parādīt _MENU_ ieraksti",
 	filter: "Atlasīt vienumu",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

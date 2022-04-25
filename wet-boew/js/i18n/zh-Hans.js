@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "现在位置：",
 	dur: "总时间：",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "分享",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "显示_MENU_项",
 	filter: "过滤项目",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

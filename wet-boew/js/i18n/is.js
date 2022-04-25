@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Núverandi staða:",
 	dur: "Samtals tími:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Deila",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Sýna _MENU_ færslur",
 	filter: "Sía atriði",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

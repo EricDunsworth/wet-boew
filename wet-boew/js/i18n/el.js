@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Τρέχουσα θέση:",
 	dur: "Συνολικός χρόνος:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Κοινή χρήση",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: "&#160;",
 	lenMenu: "Εμφάνιση _MENU_ καταχωρήσεις",
 	filter: "Φιλτράρισμα των στοιχείων",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

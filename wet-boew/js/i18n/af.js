@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Huidige posisie:",
 	dur: "Totale tyd:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Deel",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Wys _MENU_ inskrywings",
 	filter: "Filter artikels",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

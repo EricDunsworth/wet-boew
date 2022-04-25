@@ -100,14 +100,16 @@
 		<h2>Piste de navigation</h2>
 		<div class="container">
 			<div class="row">
-				<ol class="breadcrumb">
-					<li>
-						<a href="../../index-fr.html">Accueil</a>
+				<ol class="breadcrumb" typeof="BreadcrumbList">
+					<li property="itemListElement" typeof="ListItem">
+						<a property="item" typeof="WebPage" href="../../index-fr.html"><span property="name">Accueil</span></a>
+						<meta property="position" content="1">
 					</li>
-					<li>
-						<a href="../../demos/index-fr.html">Exemples pratiques</a>
-					</li>
-					<li>Contenu superposé</li>
+							<li property="itemListElement" typeof="ListItem">
+								<a property="item" typeof="WebPage" href="../../demos/index-fr.html"><span property="name">Exemples pratiques</span></a>
+								<meta property="position" content="2">
+							</li>
+							<li property="itemListElement" typeof="ListItem"><span property="name">Contenu superposé</span><meta property="position" content="3"></li>
 				</ol>
 			</div>
 		</div>
@@ -338,7 +340,7 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 		<p>Overlays/Modals through JavaScript are automatically updated with a close overlay/modal button. This button can be changed with the following code:</p>
 		<pre><code>&lt;div class=&quot;modal-footer&quot;&gt;
 ...
-&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
+&lt;button class=&quot;btn btn-primary overlay-close&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
 &lt;/div&gt;</code></pre>
 		<p><strong>Side Note:</strong> Close buttons must be inside the modal footer (a div with the class <code>modal-footer</code>).</p>
 	</section>

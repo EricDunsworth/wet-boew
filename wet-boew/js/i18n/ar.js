@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "الوظيفة الحالية:",
 	dur: "إجمالي الوقت:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "مشاركة",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "عرض _MENU_ مقالات",
 	filter: "تصفية العناصر",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

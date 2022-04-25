@@ -98,11 +98,12 @@
 		<h2>Breadcrumb Navigation</h2>
 		<div class="container">
 			<div class="row">
-				<ol class="breadcrumb">
-					<li>
-						<a href="../index-en.html">Home</a>
+				<ol class="breadcrumb" typeof="BreadcrumbList">
+					<li property="itemListElement" typeof="ListItem">
+						<a property="item" typeof="WebPage" href="../index-en.html"><span property="name">Home</span></a>
+						<meta property="position" content="1">
 					</li>
-					<li>Working examples</li>
+						<li property="itemListElement" typeof="ListItem"><span property="name">Working examples</span><meta property="position" content="2"></li>
 				</ol>
 			</div>
 		</div>
@@ -208,6 +209,12 @@
 						<td>data-ajax</td>
 					</tr>
 					<tr>
+						<td><a href="data-fusion-query/data-fusion-query-en.html">Data Fusion Query</a></td>
+						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
+						<td>Map a query parameter value into an input value.</td>
+						<td>data-fusion-query</td>
+					</tr>
+					<tr>
 						<td><a href="data-inview/data-inview-en.html">Data Inview</a></td>
 						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
 						<td>Displays an overlay when a section moves out of the viewport.</td>
@@ -230,6 +237,18 @@
 						<td><a href="../docs/ref/polyfills-en.html">Polyfills</a></td>
 						<td>Demonstrates how to dynamically update the contents of the datalist element, based upon user input. Particularly useful where there are a large number of auto-complete suggestions.</td>
 						<td>datalist</td>
+					</tr>
+					<tr>
+						<td><a href="details-close/details-close-md-en.html">Details closed on medium view and down</a></td>
+						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
+						<td>Keep selected details elements closed on medium view and smaller.</td>
+						<td>details-close</td>
+					</tr>
+					<tr>
+						<td><a href="details-close/details-close-en.html">Details closed on small views</a></td>
+						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
+						<td>Keep selected details elements closed on small view and down.</td>
+						<td>details-close</td>
 					</tr>
 					<tr>
 						<td><a href="details/details-en.html">Details/summary polyfill (expandable/collapsible content)</a></td>
@@ -299,12 +318,6 @@
 					</tr>
 					<tr>
 						<td><a href="formvalid/formvalid-en.html">Form validation</a></td>
-						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
-						<td>Provides generic validation and error message handling for Web forms.</td>
-						<td>formvalid</td>
-					</tr>
-					<tr>
-						<td><a href="formvalid/formvalid-test-en.html">Form validation - Old form example</a></td>
 						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
 						<td>Provides generic validation and error message handling for Web forms.</td>
 						<td>formvalid</td>
@@ -488,6 +501,12 @@
 						<td><a href="../docs/ref/plugins-en.html">Plugins</a></td>
 						<td>Helps with implementing Twitter embedded timelines.</td>
 						<td>twitter</td>
+					</tr>
+					<tr>
+						<td><a href="utility/utility-en.html">Uility</a></td>
+						<td><a href="../docs/ref/other-en.html">Other</a></td>
+						<td>Utilities page including working examples.</td>
+						<td>utility</td>
 					</tr>
 					<tr>
 						<td><a href="wamethod/wamethod-AA-en.html">Web Accessibility Assessment Methodology (Level AA)</a></td>

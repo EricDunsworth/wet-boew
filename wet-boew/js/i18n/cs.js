@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Aktuální pozice:",
 	dur: "Celkový čas:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Sdílet",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: "&#160;",
 	lenMenu: "Zobrazit _MENU_ položek",
 	filter: "Filtrování položek",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

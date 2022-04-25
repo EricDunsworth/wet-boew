@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "현재 위치 :",
 	dur: "총 시간",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "공유",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "_MENU_ 항목을 표시",
 	filter: "필터 항목",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

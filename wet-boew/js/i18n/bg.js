@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Позиция:",
 	dur: "Общо време:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Споделете",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Покажи _MENU_ вписвания",
 	filter: "Филтриране на елементи",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

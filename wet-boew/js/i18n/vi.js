@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "Chức vụ hiện tại:",
 	dur: "Tổng thời gian:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Chia",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Hiển thị _MENU_ mục",
 	filter: "Lọc mặt hàng",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",

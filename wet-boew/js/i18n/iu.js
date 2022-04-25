@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "ᒫᓐᓇᐅᔪᖅ ᖃᓄᐃᓕᖓᓂᖓ:",
 	dur: "ᑕᑭᓂᖓ ᑲᑎᓪᓗᒍ:",
+	audio: "@audio@",
+	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "ᐊᓯᖕᓄᐊᕐᓗᒍ",
@@ -184,6 +186,7 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "ᓴᖅᑭᓪᓕᑦ _ᓱᔾᔪᑎᑦ_ ᐃᓕᓂᑯᑦ",
 	filter: "ᐊᑕᖐᔾᔭᒃᑯᓯᖅᓯᒪᔪᑦ",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
