@@ -11210,7 +11210,8 @@ var componentName = "wb-mltmd",
 		case null:
 			$media
 				.trigger( "canplay" )
-				.trigger( "durationchange" );
+				.trigger( "durationchange" )
+				.attr( "title", "Cool video (YT)" );
 			break;
 		case -1:
 			event.target.unMute();
