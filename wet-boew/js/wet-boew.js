@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.49.1 - 2022-04-25
+ * v4.0.49.1 - 2022-04-26
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /*! @license DOMPurify 2.3.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.5/LICENSE */
@@ -11208,13 +11208,13 @@ var componentName = "wb-mltmd",
 
 		switch ( event.data ) {
 		case null:
-			const ytVideoData = media.getVideoData(),
-				ytVideoTitle = ytVideoData[ "title" ];
+			//const ytVideoData = media.getVideoData(),
+			//	ytVideoTitle = ytVideoData[ "title" ];
 
 			$media
 				.trigger( "canplay" )
-				.trigger( "durationchange" )
-				.attr( "title", ytVideoTitle + " (YouTube)" );
+				.trigger( "durationchange" );
+				//.attr( "title", ytVideoTitle + " (YouTube)" );
 				//TODO: Change YT iframe title attribute to "[Video title] (YouTube)"
 				//TOOD: Leverage undocumented getVideoData() function to get the YT video title + use a fallback for the hardcoded title attribute if it doesn't exist (maybe make it a seperate PR)
 			break;
@@ -11429,6 +11429,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		$this.addClass( "youtube" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
+		$media = $this.attr( "title", "My title is " + data.title + " (YouTube)" );
 
 		data.media = $media;
 		data.ytPlayer = ytPlayer;
