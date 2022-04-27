@@ -8935,7 +8935,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			}
 
 			const $playersOfType = $document.find( selector ).has( type );
-			const $typeMatches = $playersOfType.has( type + ":not([title]):not([type='video/youtube'])" ); //needs better var name
+			const $typeMatches = $playersOfType.has( type + ":not([title])" ); //needs better var name
 			const myIndex = $playersOfType.index( this );
 			const numOfType = $typeMatches.length;
 			console.warn( "Title-less media player elements of type \"" + type + "\": " + numOfType );
@@ -9097,7 +9097,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		if ( data.shareUrl !== undef ) {
 			$( "<div class='wb-share' data-wb-share='{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
-				data.title.replace( /'/g, "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
+				"I like titles" /*data.title.replace( /'/g, "&apos;" )*/ + "\", \"url\": \"" + data.shareUrl +
 				"\", \"pnlId\": \"" + data.id + "-shr\"}'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
