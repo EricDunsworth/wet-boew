@@ -11318,6 +11318,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 		//TODO: Need to see what'll happen with YT videos
 		//TODO: What if the page contains multiple videos that lack titles?
+		console.log( "Original media title getting set" );
 		if ( !title ) {
 			//data.colon = data.colon = "";
 			//data.space = data.space = "";
@@ -11430,6 +11431,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 		$media = $this.find( "#" + mId ).attr( "title", "My title is " + data.title + " (YouTube)" );
+		console.log( "Added YT iframe title" );
 
 		data.media = $media;
 		data.ytPlayer = ytPlayer;
