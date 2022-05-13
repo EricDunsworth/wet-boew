@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.49.1 - 2022-04-27
+ * v4.0.49.1 - 2022-05-13
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /*! @license DOMPurify 2.3.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.5/LICENSE */
@@ -10760,11 +10760,7 @@ var componentName = "wb-mltmd",
 					mute_on: i18n( "mute", "on" ),
 					mute_off: i18n( "mute", "off" ),
 					duration: i18n( "dur" ),
-					position: i18n( "pos" ),
-					colon: i18n( "colon" ),
-					space: i18n( "space" ),
-					audio: i18n( "audio" ),
-					video: i18n( "video" )
+					position: i18n( "pos" )
 				};
 			}
 
@@ -11208,15 +11204,9 @@ var componentName = "wb-mltmd",
 
 		switch ( event.data ) {
 		case null:
-			//const ytVideoData = media.getVideoData(),
-			//	ytVideoTitle = ytVideoData[ "title" ];
-
 			$media
 				.trigger( "canplay" )
 				.trigger( "durationchange" );
-				//.attr( "title", ytVideoTitle + " (YouTube)" );
-				//TODO: Change YT iframe title attribute to "[Video title] (YouTube)"
-				//TOOD: Leverage undocumented getVideoData() function to get the YT video title + use a fallback for the hardcoded title attribute if it doesn't exist (maybe make it a seperate PR)
 			break;
 		case -1:
 			event.target.unMute();
@@ -11281,11 +11271,13 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 } );
 
 $document.on( initializedEvent, selector, function( event ) {
-	if ( event.namespace === componentName ) {
-		var $this = $( this ),
-			$media = $this.children( "audio, video" ).eq( 0 ),
-			captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
-			id = $this.attr( "id" ),
+	var $this = $( this ),
+		$media = $this.children( "audio, video" ).eq( 0 ),
+		media = $media.get( 0 );
+
+	if ( event.namespace === componentName && media ) {
+		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+			id = $this.attr( "id" ) ? $this.attr( "id" ) : wb.getId(),
 			mId = $media.attr( "id" ) || id + "-md",
 			type = $media.is( "audio" ) ? "audio" : "video",
 			title = $media.attr( "title" ) || "",
@@ -11302,7 +11294,6 @@ $document.on( initializedEvent, selector, function( event ) {
 				height: height,
 				width: width
 			}, i18nText ),
-			media = $media.get( 0 ),
 			youTube = window.youTube,
 			url;
 
@@ -11315,47 +11306,6 @@ $document.on( initializedEvent, selector, function( event ) {
 		}
 
 		$this.addClass( type );
-
-		//TODO: Need to see what'll happen with YT videos
-		//TODO: What if the page contains multiple videos that lack titles?
-		console.log( "Original media title getting set" );
-		if ( !title ) {
-			//data.colon = data.colon = "";
-			//data.space = data.space = "";
-
-			if ( type === "audio" ) {
-				data.title = i18nText.audio;
-			}
-			else {
-				data.title = i18nText.video;
-			}
-
-			const $playersOfType = $document.find( selector ).has( type );
-			const $typeMatches = $playersOfType.has( type + ":not([title])" ); //needs better var name
-			const myIndex = $playersOfType.index( this );
-			const numOfType = $typeMatches.length;
-			console.warn( "Title-less media player elements of type \"" + type + "\": " + numOfType );
-			console.warn( "my index is " + myIndex );
-
-			// Should I auto-set the video's title attribute too? Or would that become too annoying/confusing/repetitive? Check out screen reader testing sites
-
-			// Do I even need this check? If I'm here can I assume I'm already a match? Experiment to find out what happens if my player doesn't have a matching audio/video element
-			// Should I exclude the number if I'm the only media of my type in the whole page?
-			if ( $playersOfType.length > 1 && myIndex > -1 ) {
-				data.title += data.space + ( myIndex + 1 );
-			}
-
-			//TODO: Probably gonna need to go through some hoops for YT videos that don't have predefined title attributes
-
-			//TODO: What if I have contradictory YT title attributes and real video titles? Assuming the YT video has loaded in by this point... which of the conflicting titles will win out?
-
-			//TODO: What if I AJAX-in some title-less videos before hardcoded title-less videos? Will some automatic titles get duplicate numbers (since AJAX stuff will load in later)?
-
-			//Use an if that counts the number of media players in the page...
-			//-If only hit and it lacks a title, don't do anything
-			//-If multiple hits, add number suffixes to untitled videos
-			//-Need to account for videos vs audio vs YT videos
-		}
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
 
@@ -11378,7 +11328,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				load: "https://www.youtube.com/iframe_api"
 			} );
 
-		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
+		} else if ( media.error === null ) {
 			$this.trigger( renderUIEvent, [ type, data ] );
 		} else {
 
@@ -11430,8 +11380,6 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		$this.addClass( "youtube" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
-		$media = $this.find( "#" + mId ).attr( "title", "My title is " + data.title + " (YouTube)" );
-		console.log( "Added YT iframe title" );
 
 		data.media = $media;
 		data.ytPlayer = ytPlayer;
@@ -11493,7 +11441,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		if ( data.shareUrl !== undef ) {
 			$( "<div class='wb-share' data-wb-share='{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
-				"I like titles" /*data.title.replace( /'/g, "&apos;" )*/ + "\", \"url\": \"" + data.shareUrl +
+				data.title.replace( /'/g, "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
 				"\", \"pnlId\": \"" + data.id + "-shr\"}'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
