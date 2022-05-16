@@ -8875,11 +8875,15 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 } );
 
 $document.on( initializedEvent, selector, function( event ) {
-	if ( event.namespace === componentName ) {
-		var $this = $( this ),
-			$media = $this.children( "audio, video" ).eq( 0 ),
-			captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
-			id = $this.attr( "id" ),
+	var $this = $( this ),
+		$media = $this.children( "audio, video" ).eq( 0 ),
+		media = $media.get( 0 ),
+		youTubeClass = "youtube";
+
+	// Proceed if namespace belongs to component and is initializing for the first time
+	if ( event.namespace === componentName && media && !$this.hasClass( youTubeClass ) ) {
+		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+			id = $this.attr( "id" ) ? $this.attr( "id" ) : wb.getId(),
 			mId = $media.attr( "id" ) || id + "-md",
 			type = $media.is( "audio" ) ? "audio" : "video",
 			title = $media.attr( "title" ) || "",
@@ -8896,7 +8900,6 @@ $document.on( initializedEvent, selector, function( event ) {
 				height: height,
 				width: width
 			}, i18nText ),
-			media = $media.get( 0 ),
 			youTube = window.youTube,
 			url;
 
@@ -8911,6 +8914,8 @@ $document.on( initializedEvent, selector, function( event ) {
 		$this.addClass( type );
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+			// Add YouTube class to the player
+			$this.addClass( youTubeClass );
 
 			// lets tweak some variables and start the load sequence
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
@@ -8931,7 +8936,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				load: "https://www.youtube.com/iframe_api"
 			} );
 
-		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
+		} else if ( media.error === null ) {
 			$this.trigger( renderUIEvent, [ type, data ] );
 		} else {
 
@@ -8979,8 +8984,6 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 				}
 			}
 		} );
-
-		$this.addClass( "youtube" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
