@@ -8890,7 +8890,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 	//console.log( "data.YouTubeId = " + data.youTubeId );
 
-	if ( event.namespace === componentName && media && !$this.hasClass( "youTube" ) ) {
+	if ( event.namespace === componentName && media && !$this.hasClass( "youtube" ) ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
