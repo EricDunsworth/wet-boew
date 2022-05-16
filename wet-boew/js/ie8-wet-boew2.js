@@ -8890,7 +8890,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 	console.log( "data.YouTubeId = " + data.youTubeId );
 
-	if ( event.namespace === componentName && media && !data.youTubeId ) {
+	if ( event.namespace === componentName && media && !$this.hasClass( "youTube" ) ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
@@ -8926,6 +8926,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
 			console.log( "Doing YouTube setup stuff..." );
+			$this.addClass( "youtube" );
 
 			// lets tweak some variables and start the load sequence
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
@@ -8996,7 +8997,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			}
 		} );
 
-		$this.addClass( "youtube" );
+		//$this.addClass( "youtube" );
 
 		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
