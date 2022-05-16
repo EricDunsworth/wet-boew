@@ -8886,7 +8886,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		console.log( "media is FALSY,\r\n" + $(media).html() );
 	}
 
-	//console.log( "media is YouTube" );
+	console.log( "$media contains this:\r\n" + $media.html() );
 
 	if ( event.namespace === componentName && media && !youTube ) {
 		console.log( "inside if" );
