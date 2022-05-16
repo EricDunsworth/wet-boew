@@ -11284,7 +11284,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 	console.log( "$this contains:\r\n" + $this.html() );
 
-	console.log( "data.YouTubeId = " + data.youTubeId );
+	//console.log( "data.YouTubeId = " + data.youTubeId );
 
 	if ( event.namespace === componentName && media && !$this.hasClass( "youTube" ) ) {
 		console.log( "inside if" );
