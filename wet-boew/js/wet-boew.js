@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.49.1 - 2022-05-13
+ * v4.0.49.1 - 2022-05-16
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /*! @license DOMPurify 2.3.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.5/LICENSE */
@@ -11275,7 +11275,16 @@ $document.on( initializedEvent, selector, function( event ) {
 		$media = $this.children( "audio, video" ).eq( 0 ),
 		media = $media.get( 0 );
 
+	if ( media ) {
+		console.warn( "media is TRUTHY,\r\n" + $(media).html() );
+	}
+	else {
+		console.warn( "media is FALSY,\r\n" + $(media).html() );
+	}
+
 	if ( event.namespace === componentName && media ) {
+		console.log( "inside if" );
+
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
 			id = $this.attr( "id" ) ? $this.attr( "id" ) : wb.getId(),
 			mId = $media.attr( "id" ) || id + "-md",
