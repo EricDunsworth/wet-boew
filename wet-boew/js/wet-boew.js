@@ -11284,7 +11284,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 	//console.log( "media is YouTube" );
 
-	if ( event.namespace === componentName && media ) {
+	if ( event.namespace === componentName && media && !youTube ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
