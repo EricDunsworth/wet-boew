@@ -11284,7 +11284,9 @@ $document.on( initializedEvent, selector, function( event ) {
 
 	console.log( "$this contains:\r\n" + $this.html() );
 
-	if ( event.namespace === componentName && !youTube && media ) {
+	console.log( "data.YouTubeId = " + data.youTubeId );
+
+	if ( event.namespace === componentName && media && !data.youTubeId ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
