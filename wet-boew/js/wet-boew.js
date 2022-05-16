@@ -11282,9 +11282,9 @@ $document.on( initializedEvent, selector, function( event ) {
 		console.log( "media is FALSY,\r\n" + $(media).html() );
 	}
 
-	console.log( "$media contains this:\r\n" + $media.html() );
+	console.log( "$this contains:\r\n" + $this.html() );
 
-	if ( event.namespace === componentName && media && !youTube ) {
+	if ( event.namespace === componentName && !youTube && media ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
