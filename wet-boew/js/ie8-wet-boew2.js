@@ -8880,13 +8880,15 @@ $document.on( initializedEvent, selector, function( event ) {
 		media = $media.get( 0 );
 
 	if ( media ) {
-		console.warn( "media is TRUTHY,\r\n" + $(media).html() );
+		console.log( "media is TRUTHY,\r\n" + $(media).html() );
 	}
 	else {
-		console.warn( "media is FALSY,\r\n" + $(media).html() );
+		console.log( "media is FALSY,\r\n" + $(media).html() );
 	}
 
-	if ( event.namespace === componentName && media ) {
+	//console.log( "media is YouTube" );
+
+	if ( event.namespace === componentName && media ) ) {
 		console.log( "inside if" );
 
 		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
@@ -8921,6 +8923,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		$this.addClass( type );
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+			console.log( "Doing YouTube setup stuff..." );
 
 			// lets tweak some variables and start the load sequence
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
@@ -8942,6 +8945,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			} );
 
 		} else if ( media.error === null ) {
+			console.log( "Doing UI setup stuff..." );
 			$this.trigger( renderUIEvent, [ type, data ] );
 		} else {
 
