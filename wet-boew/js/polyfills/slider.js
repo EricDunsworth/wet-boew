@@ -96,12 +96,6 @@ var fdSlider = (function() {
             e.preventDefault();
         }
 
-        /*@cc_on@*/
-        /*@if(@_win32)
-        e.cancelBubble = true;
-        e.returnValue = false;
-        /*@end@*/
-
         return false;
     };
     var preventDefault = function(e) {
@@ -473,7 +467,7 @@ var fdSlider = (function() {
             locate();
             // Internet Explorer requires the try catch as hidden
             // elements throw errors
-            try {
+            try { //IETODO
                 var sW  = outerWrapper.offsetWidth,
                     sH  = outerWrapper.offsetHeight,
                     hW  = handle.offsetWidth,
@@ -822,7 +816,7 @@ var fdSlider = (function() {
                 obj     = outerWrapper;
 
             // Try catch for IE's benefit
-            try {
+            try {  //ietodo
                 do {
                     curleft += obj.offsetLeft;
                     curtop  += obj.offsetTop;
@@ -1102,7 +1096,7 @@ var fdSlider = (function() {
             // loop through label array attempting to match each 'for' attribute to the id of the current element
             for(var i = 0, lbl; lbl = labelList[i]; i++) {
                 // Internet Explorer requires the htmlFor test
-                if((lbl['htmlFor'] && lbl['htmlFor'] == inp.id) || (lbl.getAttribute('for') == inp.id)) {
+                if((lbl['htmlFor'] && lbl['htmlFor'] == inp.id) || (lbl.getAttribute('for') == inp.id)) { //IETODO
                     label = lbl;
                     break;
                 }
@@ -1144,8 +1138,8 @@ var fdSlider = (function() {
 
         // Sets a tabindex attribute on an element, bends over for IE.
         function setTabIndex(e, i) {
-            e.setAttribute(!/*@cc_on!@*/false ? "tabIndex" : "tabindex", i);
-            e.tabIndex = i;
+            e.setAttribute(!false ? "tabIndex" : "tabindex", i);
+            e.tabIndex = i; //ietodo
         }
 
         (function() {
@@ -1220,7 +1214,7 @@ var fdSlider = (function() {
 
             inp.parentNode.insertBefore(outerWrapper, inp);
 
-            if(isOpera || /*@cc_on!@*/!true) {
+            if(isOpera || !true) {
                 handle.unselectable       = "on";
                 bar.unselectable          = "on";
                 ieBlur.unselectable       = "on";
@@ -1242,12 +1236,7 @@ var fdSlider = (function() {
             if(lbl) {
                 handle.setAttribute("aria-labelledby", lbl.id);
                 handle.id = "fd-slider-handle-" + inp.id;
-                /*@cc_on@*/
-                /*@if(@_win32)
-                lbl.setAttribute("htmlFor", handle.id);
-                @else @*/
                 lbl.setAttribute("for", handle.id);
-                /*@end@*/
             }
 
             // Are there page instructions
@@ -1310,12 +1299,6 @@ var fdSlider = (function() {
             affectJSON(json);
         }
     })();
-
-    // Add oldie class if needed for IE < 9
-    /*@cc_on@*/
-    /*@if (@_jscript_version < 9)
-    addClass(document.documentElement, "oldie");
-    /*@end@*/
 
     return {
         rescanDocument:         init,

@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Τρέχουσα θέση:",
 	dur: "Συνολικός χρόνος:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Κοινή χρήση",

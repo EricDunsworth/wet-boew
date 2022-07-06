@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Chức vụ hiện tại:",
 	dur: "Tổng thời gian:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Chia",

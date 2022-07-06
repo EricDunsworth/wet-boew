@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Aktuálna pozícia:",
 	dur: "Celkový čas:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Zdieľať",

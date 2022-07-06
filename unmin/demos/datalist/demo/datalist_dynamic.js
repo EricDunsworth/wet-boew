@@ -25,7 +25,7 @@ $document.on( "change", pluginSelector, function( event ) {
 
 $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 	var dataList = $( "#" + issueInput.attr( "list" ) ),
-		issues = wb.ielt10 ? event.fetch.response.data : event.fetch.response,
+		issues = event.fetch.response,
 		lenIssues = issues.length,
 		options = "",
 		indIssue, issue;
@@ -36,10 +36,6 @@ $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 		issue = issues[ indIssue ];
 
 		options += "<option label=\"" + issue.title + "\" value=\"" + issue.title + "\"></option>";
-	}
-
-	if ( wb.ielt10 ) {
-		options = "<select>" + options + "</select>";
 	}
 
 	dataList.append( options );

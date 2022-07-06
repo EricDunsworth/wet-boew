@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Aktualna pozycja:",
 	dur: "Czas całkowity:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Prześlij",

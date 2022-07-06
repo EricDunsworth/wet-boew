@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Šobdrīdējā pozīcija:",
 	dur: "Kopējais laiks:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Ieteikt",

@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Jelenlegi pozíció:",
 	dur: "Összidő:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Oszd",

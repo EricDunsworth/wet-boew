@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Geçerli pozisyon:",
 	dur: "Toplam zaman:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Paylaş",

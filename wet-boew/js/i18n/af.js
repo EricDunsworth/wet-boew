@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Huidige posisie:",
 	dur: "Totale tyd:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Deel",

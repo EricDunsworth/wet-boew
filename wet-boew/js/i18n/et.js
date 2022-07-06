@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Praegune asukoht",
 	dur: "Kogu kestvus:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Jaga seda lehekülge",

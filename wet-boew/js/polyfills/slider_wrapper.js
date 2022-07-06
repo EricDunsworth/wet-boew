@@ -38,14 +38,6 @@ var componentName = "wb-slider",
 				html5Shim: true
 			} );
 
-			// Allows listening for input and change at the document level for IE < 9
-			if ( wb.ielt9 ) {
-				$eventTarget = $( eventTarget );
-				$eventTarget.on( "input change", function( event ) {
-					$eventTarget.closest( "[class^='wb-'], body" ).trigger( event );
-				} );
-			}
-
 			// Identify that initialization has completed
 			wb.ready( $eventTarget, componentName );
 		}

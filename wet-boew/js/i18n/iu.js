@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "ᒫᓐᓇᐅᔪᖅ ᖃᓄᐃᓕᖓᓂᖓ:",
 	dur: "ᑕᑭᓂᖓ ᑲᑎᓪᓗᒍ:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "ᐊᓯᖕᓄᐊᕐᓗᒍ",

@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Ներկայիս պաշտոնը:",
 	dur: "Ընդհանուր ժամանակը:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Կիսում",

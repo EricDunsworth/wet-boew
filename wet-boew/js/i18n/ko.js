@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "현재 위치 :",
 	dur: "총 시간",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "공유",

@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "الوظيفة الحالية:",
 	dur: "إجمالي الوقت:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "مشاركة",

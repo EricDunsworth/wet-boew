@@ -94,8 +94,6 @@ wb.i18nDict = {
 	},
 	pos: "Núverandi staða:",
 	dur: "Samtals tími:",
-	audio: "@audio@",
-	video: "@video@",
 
 	/* Share widget */
 	"shr-txt": "Deila",
