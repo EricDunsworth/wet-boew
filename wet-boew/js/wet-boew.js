@@ -11602,22 +11602,17 @@ $document.on( initializedEvent, selector, function( event ) {
 			}
 
 			if (window.youTube.ready) {
-				alert("0 YT is ready!!!");
+				//alert("0 YT is ready!!!");
 			}
 			else {
-				alert("0 YT failed!!!");
+				//alert("0 YT failed!!!");
 			}
 
 			// finally lets load safely
 			return Modernizr.load( {
 				load: "https://www.youtube.com/iframe_api",
 				complete: function() {
-					if (window.youTube.ready) {
-						alert("YT is ready!!!");
-					}
-					else {
-						alert("YT failed!!!");
-					}
+					alert("done!");
 				}
 
 			} );
