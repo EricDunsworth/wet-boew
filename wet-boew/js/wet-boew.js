@@ -11601,18 +11601,18 @@ $document.on( initializedEvent, selector, function( event ) {
 				$this.trigger( youtubeEvent, data );
 			}
 
-			if (window.youTube.ready) {
-				//alert("0 YT is ready!!!");
-			}
-			else {
-				//alert("0 YT failed!!!");
-			}
-
 			// finally lets load safely
 			return Modernizr.load( {
 				load: "https://www.youtube.com/iframe_api",
 				complete: function() {
 					alert("done!");
+
+					if (window.youTube.ready) {
+						alert("0 YT is ready!!!");
+					}
+					else {
+						alert("0 YT failed!!!");
+					}
 				}
 
 			} );
