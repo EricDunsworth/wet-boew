@@ -11613,6 +11613,13 @@ $document.on( initializedEvent, selector, function( event ) {
 					else {
 						alert("0 YT failed!!!");
 					}
+
+					if (scriptUrl || window.scriptUrl) {
+						alert("scriptUrl exists!!!");
+					}
+					else {
+						alert("scriptUrl doesn't exist!!!");
+					}
 				}
 
 			} );
