@@ -11605,13 +11605,13 @@ $document.on( initializedEvent, selector, function( event ) {
 			return Modernizr.load( {
 				load: "https://www.youtube.com/iframe_api",
 				complete: function() {
-					alert("done!");
+					//alert("done!");
 
-					if (YT) {
-						alert("YT var exists!!!");
+					if ( typeof YT !== "undefined" ) {
+						alert("YT exists!!!");
 					}
 					else {
-						alert("YT var doesn't exist!!!");
+						alert("YT doesn't exist!!!");
 					}
 				}
 
