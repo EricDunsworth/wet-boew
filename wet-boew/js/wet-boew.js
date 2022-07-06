@@ -11602,9 +11602,10 @@ $document.on( initializedEvent, selector, function( event ) {
 			}
 
 			// finally lets load safely
-			return Modernizr.load( {
+			Modernizr.load( {
 				load: "https://www.youtube.com/iframe_api",
-				complete: function() {
+				//complete: function() {
+				callback: function() {
 					//alert("done!");
 
 					if ( typeof YT !== "undefined" ) {
@@ -11614,7 +11615,6 @@ $document.on( initializedEvent, selector, function( event ) {
 						alert("YT doesn't exist!!!");
 					}
 				}
-
 			} );
 
 		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
