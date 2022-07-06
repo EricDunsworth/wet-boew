@@ -11607,18 +11607,11 @@ $document.on( initializedEvent, selector, function( event ) {
 				complete: function() {
 					alert("done!");
 
-					if (window.youTube.ready) {
-						alert("0 YT is ready!!!");
+					if (YT) {
+						alert("YT var exists!!!");
 					}
 					else {
-						alert("0 YT failed!!!");
-					}
-
-					if (scriptUrl || window.scriptUrl) {
-						alert("scriptUrl exists!!!");
-					}
-					else {
-						alert("scriptUrl doesn't exist!!!");
+						alert("YT var doesn't exist!!!");
 					}
 				}
 
