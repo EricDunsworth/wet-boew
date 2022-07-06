@@ -11591,16 +11591,28 @@ $document.on( initializedEvent, selector, function( event ) {
 			data.youTubeId = url.params.v ? url.params.v : url.pathname.substr( 1 );
 
 			if ( youTube.ready === false ) {
+				//if (window.onYouTubeIframeAPIReady) {alert("window.onYouTubeIframeAPIReady is truthy");} else {alert("window.onYouTubeIframeAPIReady is falsy");}
+				//alert("YT.ready isn't ready");
 				$document.one( youtubeReadyEvent, function() {
 					$this.trigger( youtubeEvent, data );
 				} );
 			} else {
+				//alert("YT.ready is ready");
 				$this.trigger( youtubeEvent, data );
 			}
 
 			// finally lets load safely
 			return Modernizr.load( {
-				load: "https://www.youtube.com/iframe_api"
+				load: "https://www.youtube.com/iframe_api",
+				complete: function() {
+					if (youTube.ready) {
+						alert("YT is ready!!!");
+					}
+					else {
+						alert("YT failed!!!");
+					}
+				}
+
 			} );
 
 		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
@@ -11609,7 +11621,13 @@ $document.on( initializedEvent, selector, function( event ) {
 
 			// Do nothing since IE8 support is no longer required
 			alert("boo-urns");
-			return; //ietodo - could this have something to do with why the YT media player never finishes initializing?
+			return; //ietodo - The YT player never finishes initializing because the if condition it matches always returns modernizr, whereas the normal player's if condition triggers its UI render event. So... normal players continue onto wb.ready, whereas YT ones don't due to that stupid modernizr return. Best fix would probably be to add a copy of wb.ready after the YT player's call to renderUIEvent + something to cope with errors/load failures. The YT stuff might try reloading. It might be a bad bet to *move* wb.ready to the end of renderUIEvent because the pre-existing logic would allow wb.ready to be reached if a media player fails.
+
+			//HEADS UP: If a botched normal media player is setup (like one with an empty string as a <source>), wb.ready will never be reached and it'll probably mess up do action just like YT players. So I don't see any downside in getting rid of the catch-all else. It'd be nice if the media player could render and show an error message though (like for failed captions).
+
+			//HISTORY LESSON: It looks like there used to be a fallbackevent before wb.ready that triggered a flash WET player: https://github.com/wet-boew/wet-boew/commit/1d6ba9c7267037ed668ba544497eab8aebab9699 - no idea how that coped with real errors
+
+			//What does my boo-urns test do when YT works properly? Does YT load twice and cause it to trigger? NOPE
 		}
 
 		alert("AFTER boo-urns");
