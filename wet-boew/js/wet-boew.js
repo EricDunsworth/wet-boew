@@ -11605,7 +11605,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			return Modernizr.load( {
 				load: "https://www.youtube.com/iframe_api",
 				complete: function() {
-					if (youTube.ready) {
+					if (window.youTube.ready) {
 						alert("YT is ready!!!");
 					}
 					else {
