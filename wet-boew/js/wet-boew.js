@@ -11608,11 +11608,11 @@ $document.on( initializedEvent, selector, function( event ) {
 				callback: function() {
 					//alert("done!");
 
-					if ( typeof YT !== "undefined" ) {
+					if ( typeof window.YT !== "undefined" ) {
 						alert("YT exists!!!");
 					}
 					else {
-						alert("YT doesn't exist!!!");
+						alert("YT doesn't exist!!!"); //IE11 always shows this even if YT successfully loads... does it mean my if is flawed? Is it realted to not doing the return?
 					}
 				}
 			} );
@@ -11644,7 +11644,7 @@ $document.on( initializedEvent, selector, function( event ) {
  */
 $document.on( youtubeEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
-		alert("Youtube Video mode Event");
+		alert("Youtube Video mode Event"); //only runs if yt successfully loads
 
 		var mId = data.mId,
 			$this = $( event.currentTarget ),
