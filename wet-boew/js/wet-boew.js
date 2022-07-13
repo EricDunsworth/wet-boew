@@ -11630,10 +11630,6 @@ $document.on( initializedEvent, selector, function( event ) {
 
 		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
 			$this.trigger( renderUIEvent, [ type, data ] );
-		} else {
-
-			// Do nothing since IE8 support is no longer required
-			return;
 		}
 
 		// Identify that initialization has completed
