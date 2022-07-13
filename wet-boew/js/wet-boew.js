@@ -1,7 +1,7 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * v4.0.51 - 2022-07-11
+ * v4.0.51 - 2022-07-13
  *
  *//*! Modernizr (Custom Build) | MIT & BSD */
 /*! @license DOMPurify 2.3.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.5/LICENSE */
@@ -4492,6 +4492,16 @@ var componentName = "wb-calevt",
 			if ( !directLinking ) {
 				linkId = event.id || wb.getId();
 				event.id = linkId;
+
+				/*
+				 * Fixes IE tabbing error:
+				 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
+				 */
+
+				// TODO: Which versions of IE should this fix be limited to?
+				if ( wb.ie ) {
+					event.tabIndex = "-1";
+				}
 				href = "#" + linkId;
 			}
 
@@ -4577,6 +4587,14 @@ var componentName = "wb-calevt",
 	addEvents = function( year, month, $days ) {
 		var eventsList = this.events,
 			i, eLen, date, dayIndex, $day, $dayEvents, event, eventMonth;
+
+		// Fix required to make up with the IE z-index behaviour mismatch
+		// TODO: Move ot IE CSS? Which versions of IE should this fix be limited to?
+		if ( wb.ie ) {
+			for ( i = 0, eLen = $days.length; i !== eLen; i += 1 ) {
+				$days.eq( i ).css( "z-index", 31 - i );
+			}
+		}
 
 		/*
 		 * Determines for each event, if it occurs in the display month
@@ -7161,6 +7179,13 @@ var imgClass,
 			}
 			img.src = matchedElm.getAttribute( "data-src" );
 			matchedElm.appendChild( img );
+
+			// Fixes bug with IE8 constraining the height of the image
+			// when the .img-responsive class is used.
+			if ( wb.ielt9 ) {
+				img.removeAttribute( "width" );
+				img.removeAttribute( "height" );
+			}
 
 		// No match and an image exists: delete it
 		} else if ( img ) {
@@ -11591,30 +11616,16 @@ $document.on( initializedEvent, selector, function( event ) {
 			data.youTubeId = url.params.v ? url.params.v : url.pathname.substr( 1 );
 
 			if ( youTube.ready === false ) {
-				//if (window.onYouTubeIframeAPIReady) {alert("window.onYouTubeIframeAPIReady is truthy");} else {alert("window.onYouTubeIframeAPIReady is falsy");}
-				//alert("YT.ready isn't ready");
 				$document.one( youtubeReadyEvent, function() {
 					$this.trigger( youtubeEvent, data );
 				} );
 			} else {
-				//alert("YT.ready is ready");
 				$this.trigger( youtubeEvent, data );
 			}
 
 			// finally lets load safely
 			Modernizr.load( {
-				load: "https://www.youtube.com/iframe_api",
-				//complete: function() {
-				callback: function() {
-					//alert("done!");
-
-					if ( typeof window.YT !== "undefined" ) {
-						alert("YT exists!!!");
-					}
-					else {
-						alert("YT doesn't exist!!!"); //IE11 always shows this even if YT successfully loads... does it mean my if is flawed? Is it realted to not doing the return?
-					}
-				}
+				load: "https://www.youtube.com/iframe_api"
 			} );
 
 		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
@@ -11622,17 +11633,8 @@ $document.on( initializedEvent, selector, function( event ) {
 		} else {
 
 			// Do nothing since IE8 support is no longer required
-			alert("boo-urns");
-			return; //ietodo - The YT player never finishes initializing because the if condition it matches always returns modernizr, whereas the normal player's if condition triggers its UI render event. So... normal players continue onto wb.ready, whereas YT ones don't due to that stupid modernizr return. Best fix would probably be to add a copy of wb.ready after the YT player's call to renderUIEvent + something to cope with errors/load failures. The YT stuff might try reloading. It might be a bad bet to *move* wb.ready to the end of renderUIEvent because the pre-existing logic would allow wb.ready to be reached if a media player fails.
-
-			//HEADS UP: If a botched normal media player is setup (like one with an empty string as a <source>), wb.ready will never be reached and it'll probably mess up do action just like YT players. So I don't see any downside in getting rid of the catch-all else. It'd be nice if the media player could render and show an error message though (like for failed captions).
-
-			//HISTORY LESSON: It looks like there used to be a fallbackevent before wb.ready that triggered a flash WET player: https://github.com/wet-boew/wet-boew/commit/1d6ba9c7267037ed668ba544497eab8aebab9699 - no idea how that coped with real errors
-
-			//What does my boo-urns test do when YT works properly? Does YT load twice and cause it to trigger? NOPE
+			return;
 		}
-
-		alert("AFTER boo-urns");
 
 		// Identify that initialization has completed
 		wb.ready( $this, componentName );
@@ -11644,8 +11646,6 @@ $document.on( initializedEvent, selector, function( event ) {
  */
 $document.on( youtubeEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
-		alert("Youtube Video mode Event"); //only runs if yt successfully loads
-
 		var mId = data.mId,
 			$this = $( event.currentTarget ),
 			$media, ytPlayer;
@@ -16418,7 +16418,7 @@ var componentName = "wb-disable",
 			}
 
 			try {
-				if ( wb.isDisabled ) {
+				if ( wb.isDisabled || ( wb.ie && wb.ielt7 ) ) {
 					$html.addClass( "wb-disable" );
 
 					try {
