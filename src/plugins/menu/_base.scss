@@ -28,14 +28,14 @@
 	}
 
 	details {
-		/* Prevent find in page searches (aka hidden=until-found) from auto-expanding collapsed details elements containing hits */
 		&::details-content {
+			/* Prevent find in page searches (aka hidden=until-found) from auto-expanding collapsed details elements containing hits */
 			display: none;
 		}
 
 		&[open] {
-			/* Allow find-in-page searches on expanded details elements */
 			&::details-content {
+				/* Allow find-in-page searches on expanded details elements */
 				display: block;
 			}
 
@@ -59,10 +59,10 @@
 			}
 		}
 
-		/* Make the menu bar's summary item outlines consistent with link items */
 		summary {
 			&.item {
 				&:focus {
+					/* Make the menu bar's summary item outlines consistent with link items */
 					outline-offset: -2px;
 					outline-style: revert;
 					outline-width: revert;
@@ -71,11 +71,11 @@
 		}
 	}
 
-	/* Counteract a summary heading override that makes the menu bar's arrow icons very tall */
 	summary {
 		> {
 			.glyphicon {
 				&:first-child {
+					/* Counteract a summary heading override that makes the menu bar's arrow icons very tall */
 					display: inline-block;
 				}
 			}
@@ -109,7 +109,7 @@
 					text-align: center;
 				}
 
-				/* Menu bar's details/summary elements (excludes submenus) */
+				// Menu bar's details/summary elements (excludes submenus)
 				> {
 					details {
 						&[open] {
