@@ -615,7 +615,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 
 // Set stillInMenu to false when hovering between menu items or outside the menu bar
 // Note: Prevents submenus from automatically re-expanding if the user clicks on a menu item to collapse it
-$document.on( "mouseleave", selector + " .item", function( event ) {
+$document.on( "mouseleave", selector + " .item", function() {
 	stillInMenuItem = false;
 } );
 
