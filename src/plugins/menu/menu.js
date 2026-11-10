@@ -296,10 +296,10 @@ var componentName = "wb-menu",
 						const $topLevelLi = $( this );
 						const $item = $topLevelLi.find( ".item" ).first();
 						const $submenu = $item.next( ".sm" );
-						const arrowIcon = "<span class='expicon glyphicon glyphicon-chevron-down' aria-hidden='true'></span>";
 
 						// If the item has a submenu...
 						if ( $item.length && $submenu.length ) {
+							const arrowIcon = "<span class='expicon glyphicon glyphicon-chevron-down' aria-hidden='true'></span>";
 
 							// Remove its href attribute
 							$item.removeAttr( "href" );
