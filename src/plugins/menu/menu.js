@@ -150,7 +150,12 @@ var componentName = "wb-menu",
 					}
 
 					// Convert the list item to a menuitem
-					sectionHtml += "<li class='no-sect'>" + linkHtml + "</li>";
+					// Note: Injects a new class attribute to the beginning of the link... which supersedes its original class
+					sectionHtml += "<li class='no-sect'>" +
+						linkHtml.replace(
+							/(<a\s)/,
+							"$1class='mb-item' "
+						) + "</li>";
 				}
 			}
 
