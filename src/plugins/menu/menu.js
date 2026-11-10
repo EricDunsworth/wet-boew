@@ -296,14 +296,20 @@ var componentName = "wb-menu",
 						// If the item has a submenu...
 						if ( $item.length && $submenu.length ) {
 
+							// Remove its href attribute
+							$item.removeAttr( "href" );
+
 							// Add an arrow icon
 							$item.append( arrowIcon );
 
 							// Transform link/submenu combination into a details/summary structure
 							if ( $item.prop( "nodeName" ).toLowerCase() === "a" ) {
 
-								// Create a details element, turn the link into a summary and add its submenu
-								const $newDetails = $( "<details><summary class='item'>" + $item.html() + "</summary>" + $submenu[ 0 ].outerHTML + "</details>" );
+								// Rename the link's tag to summary
+								const newSummary = "<summary" + $item[ 0 ].outerHTML.slice( 2, -2 ) + "summary>";
+
+								// Create a details element, add the summary and its submenu
+								const $newDetails = $( "<details>" + newSummary + $submenu[ 0 ].outerHTML + "</details>" );
 
 								// Replace the item's contents with the details element
 								$topLevelLi.empty().append( $newDetails );
