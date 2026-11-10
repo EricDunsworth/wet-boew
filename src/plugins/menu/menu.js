@@ -83,7 +83,7 @@ var componentName = "wb-menu",
 		// Use details/summary for the collapsible mechanism
 		var k, $elm, elm, $item, $subItems, subItemsLength,
 			$section = $( section ),
-			sectionHtml = "<li><details>" + "<summary class='mb-item" +
+			sectionHtml = "<li><details><summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
 				">" + $section.text() + "</summary>" +
 				"<ul class='list-unstyled mb-sm'>";
